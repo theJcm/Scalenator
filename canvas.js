@@ -127,69 +127,38 @@ function getclickedElement(element) {
     });
 };
 
-// window.onresize = function lol() {
-//     canvasFabric.clear();
-
-//         if (window.innerHeight > window.innerWidth) {
-//             device = "mobile";
-//             canvasFabric.enableRetinaScaling = true;
-//         } else {
-//             device = "desktop";
-//             canvasFabric.enableRetinaScaling = false;
-//         }
-
-//         let body = document.getElementsByTagName('body')[0]
-
-//         availableWidth = navbar.offsetWidth;
-//         availableHeight = body.clientHeight - navbar.offsetHeight;
-
-//         // dpi = window.devicePixelRatio;   
-
-//         canvasFabric.setWidth(availableWidth);
-//         canvasFabric.setHeight(availableHeight);
-
-//         canvas.style.width = availableWidth;
-//         canvas.style.height = availableHeight;
-
-//         //Pintar todo de nuevo con las nuevas medidas
-//         setFretboard();
-// }
-
 function resizeCanvas(){
     // Haven't resized in 100ms!
     
     canvasFabric.clear();
 
-        if (window.innerHeight > window.innerWidth) {
-            device = "mobile";
+    if (window.innerHeight > window.innerWidth) {
+        device = "mobile";
+        canvasFabric.enableRetinaScaling = true;
+    } else {
+        device = "desktop";
+        if (window.devicePixelRatio > 1) {
             canvasFabric.enableRetinaScaling = true;
         } else {
-            device = "desktop";
-            if (window.devicePixelRatio > 1) {
-                canvasFabric.enableRetinaScaling = true;
-            } else {
-                canvasFabric.enableRetinaScaling = false;
-            }
+            canvasFabric.enableRetinaScaling = false;
         }
+    }
 
-        let body = document.getElementsByTagName('body')[0]
+    let body = document.getElementsByTagName('body')[0]
 
-        availableWidth = navbar.offsetWidth;
-        availableHeight = body.clientHeight - navbar.offsetHeight;
+    availableWidth = navbar.offsetWidth;
+    availableHeight = body.clientHeight - navbar.offsetHeight;
 
-        // dpi = window.devicePixelRatio;   
+    // dpi = window.devicePixelRatio;   
 
-        canvasFabric.setWidth(availableWidth);
-        canvasFabric.setHeight(availableHeight);
+    canvasFabric.setWidth(availableWidth);
+    canvasFabric.setHeight(availableHeight);
 
-        canvas.style.width = availableWidth;
-        canvas.style.height = availableHeight;
+    canvas.style.width = availableWidth;
+    canvas.style.height = availableHeight;
 
-        //Pintar todo de nuevo con las nuevas medidas
-        setFretboard();
-
-        // canvasFabric.requestRenderAll()
-
+    //Pintar todo de nuevo con las nuevas medidas
+    setFretboard();
 }
 
 var timeoutResize;
@@ -378,7 +347,6 @@ function setFretboard() {
             fontWeight: 'bold',
             textAlign: 'center',
             fontFamily: "sans-serif",
-            // fill: '#0069ff',
             fill: '#fff',
             centeredScaling: true,
             objectCaching: false,

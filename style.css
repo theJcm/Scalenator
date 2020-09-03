@@ -75,15 +75,11 @@ body {
 }
 
 #ddlInstrument, #ddlScale, #ddlKey {
-  /* position: absolute;
-  z-index: 3;  */
   margin: auto;
   background: #fff;
   border: none;
   border-radius: 0.45em;
   padding: 0.3em 0.2em;
-  /* box-shadow: 0px 2px 9px 2px #00000014; */
-  /* box-shadow: 0px 2px 24px 3px #0089ff36; */
   box-shadow: 0px 1px 0px 2px #c7deffa3;
 }
 
@@ -96,26 +92,17 @@ select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
   outline: none;
 }
 
-.fret-container {
-  /* height: 100%;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column; */
-}
-
 .toolbox {
   flex: 1 1 auto;
-  /* display: none; */
-
   position: absolute;
   right: 1em;
-  background: #fffffff5;
-  box-shadow: 0px 3px 16px #79b0ff57;
+  background: #fff;
+  box-shadow: 0px 3px 16px #79b0ff7d;
   border-radius: 0.65em;
   z-index: 1;
   padding: 1em;
   top: 2.5em;
-  animation: hide-smooth 1s forwards;
+  animation: hide-smooth 0.5s forwards;
   display: none;
 }
 
@@ -125,7 +112,6 @@ select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
 
 .toolbox-dropmenus {
   display: flex;
-  padding-top: 1em;
   justify-content: space-around;
 }
 
@@ -166,16 +152,19 @@ select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
   height: 100%;
   position: absolute;
   z-index: 1;
-  /* background: #333; */
   display: none;
 }
 
 .show {
-  animation: show-smooth 1s forwards;
+  animation: show-smooth 0.7s forwards;
 }
 
 
 @media (min-width: 1025px) {
+  .navbar {
+    padding: 1rem 1rem;
+  }
+
   .toolbox {
     display: block;
     position: relative;
@@ -196,6 +185,15 @@ select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
     display: flex;
     flex-direction: column;
     margin: 0;
+    flex-flow: wrap;
+  }
+
+  #guitar, #scale, #key {
+    width: 1.5em;
+    margin: auto;
+    padding-bottom: 0em;
+    fill: #0069ff;
+    padding-right: 1em;
   }
 }
 
