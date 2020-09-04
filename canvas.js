@@ -27,15 +27,15 @@ let width = availableWidth
 let height = availableHeight;
 
 var canvasFabric = new fabric.Canvas('canvas', {
+    renderOnAddRemove: false,
     backgroundColor: 'rgb(255,255,255, 1)',
-    selectionColor: 'blue',
-    selectionLineWidth: 2,
     hoverCursor: 'pointer',
     enableRetinaScaling: true,
     width: width,
     height: height,
     selection: false,
-    alpha:true
+    
+    // alpha:true,
 });
 
 //Dispositivo
@@ -332,10 +332,10 @@ function setFretboard() {
             width: freetWidth,
             height: freetNumbers,
             centeredScaling: true,
-            objectCaching: false,
             evented: false,
             selectable: false,
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            objectCaching: false,
         });
 
         canvasFabric.add(circle);
@@ -349,11 +349,11 @@ function setFretboard() {
             fontFamily: "sans-serif",
             fill: '#fff',
             centeredScaling: true,
-            objectCaching: false,
             evented: false,
             selectable: false,
             width: freetWidth,
-            height: freetNumbers
+            height: freetNumbers,
+            objectCaching: false,
         });
 
         canvasFabric.add(freetNumber);
@@ -370,6 +370,7 @@ function setFretboard() {
                 selectable: false,
                 fill: "rgb(255,255,255)",
                 name: `Rectangle_[${i}][${j}]`,
+                objectCaching: false,
 
                 // Set tild Note
                 note: notes[j][i]
@@ -393,12 +394,12 @@ function setFretboard() {
                 fontSize: 10,
                 textAlign: 'center',
                 fontFamily: "sans-serif",
-                objectCaching: false,
                 evented: false,
                 selectable: false,
                 width: freetWidth,
                 height: freetHeight,
-                originY: 'center'
+                originY: 'center',
+                objectCaching: false,
             });
 
             fretNotes.push(rectNote);
@@ -413,7 +414,8 @@ function setFretboard() {
             stroke: "#66aaff",
             strokeWidth: 3,
             selectable: false,
-            selection: false
+            selection: false,
+            objectCaching: false,
         });
 
         canvasFabric.add(freetLine);
@@ -458,8 +460,7 @@ function onChangeDdlKey(ddl) {
 
                 // Change letter color
                 fretNotes[i].set('fill', '#ffffff');
-                fretNotes[i].fontWeight = 'bold';
-                
+                fretNotes[i].fontWeight = 'bold';            
             }
         }
     }
