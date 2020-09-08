@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Rubik', sans-serif;
+  background: #fff;
 }
 
 body {
@@ -52,6 +53,12 @@ body {
   font-weight: 700!important;
 }
 
+#fuelle {
+  background: #0069ff;
+  color: #fff;
+  padding: 0.2em 0;
+}
+
 #alert {
   background: #ffffff;
   position: absolute;
@@ -74,7 +81,7 @@ body {
   padding: 1em;
 }
 
-#ddlInstrument, #ddlScale, #ddlKey {
+#ddlInstrument, #ddlTuning ,#ddlScale, #ddlKey {
   margin: auto;
   background: #fff;
   border: none;
@@ -83,12 +90,12 @@ body {
   box-shadow: 0px 1px 0px 2px #c7deffa3;
 }
 
-select#ddlInstrument, select#ddlScale, select#ddlKey {
+select#ddlInstrument, select#ddlTuning, select#ddlScale, select#ddlKey {
   color: #0069ff;
   font-weight: 500;
 }
 
-select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
+select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, select#ddlKey:focus {
   outline: none;
 }
 
@@ -159,6 +166,173 @@ select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
   animation: show-smooth 0.7s forwards;
 }
 
+.slider {
+  -webkit-appearance: none;
+  height: 1.1em;
+  width: 100%;
+  /* background: #79b0ff; */
+  background: #79b0ff40;
+  outline: none;
+  border-radius: 1em;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 5em;
+  height: 1.1em;
+  background: #0069ff;
+  cursor: pointer;
+  border-radius: 1em;
+}
+
+#rangeScale {
+  margin: 0;
+}
+
+#scaleForm {
+  display: flex;
+}
+
+.canvas-container {
+  overflow: hidden;
+  /* box-sizing: border-box; */
+}
+
+.scroll-canvas {
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.freet-container {
+  max-width: 90%;
+  justify-content: space-evenly;
+  margin-top: 1em;
+  margin: 2em auto auto auto;
+  border-radius: 0.65em;
+  box-shadow: 0px 1px 0px 2px #c7deffa3;
+}
+
+.freet-options {
+  /* display: flex; */
+  /* justify-content: space-evenly;
+  margin-top: 1em;
+  box-shadow: 0px 3px 16px #79b0ff7d;
+  max-width: 90%;
+  margin: 2em auto auto auto;
+  border-radius: 0.65em; */
+  justify-content: space-between;
+}
+
+.chords-title {
+  margin: 0;
+  padding: 1em 1.5em 0 1.5em;
+  color: #0069ff;
+}
+
+.chords-container {
+  display: flex;
+  justify-content: center;
+}
+
+.chords {
+  display: flex;
+  padding: 2em 2em 0em 2em;
+  align-self: center;
+}
+
+.chords-label {
+  font-weight: 400;
+}
+
+.chords input {
+  appearance: none;
+  border-radius: 100%;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0;
+  margin-right: 0.5em;
+  position: relative;
+  transition: background-color 0.3s;
+  background-color: #c7deff;
+}
+
+.chords input:hover {
+  background-color: #79b0ff;
+}
+
+.chords input:focus {
+  outline: none;
+}
+
+.chords input:before {
+  content: '';
+}
+
+.chords input:after {
+  content: '';
+  transition: background-color 0.5s;
+}
+
+.chords input:checked{
+  background: #0069ff;
+}
+
+.chords input:checked:after {
+  width: 0.72em;
+  height: 0.72em;
+  background-color: #fff;
+  position: absolute;
+  content: '';
+  left: 5px;
+  top: 5px;
+  border-radius: 100%;
+}
+
+.type-chords {
+  padding: 1em;
+}
+
+.type-chords button {
+  padding: 1em 0.8em;
+  border: none;
+  border-radius: 0.85em;
+  background-color: #fff;
+  box-shadow: 0px 1px 0px 2px #c7deffa3;
+  color: #0069ff;
+  font-weight: 700;
+  font-family: 'Rubik', sans-serif;
+  margin: 0 0.5em 0 0.5em;
+  transition: background-color 0.5s, color 0.5s;
+  cursor: pointer;
+}
+
+.type-chords button:hover {
+  background-color: #0069ff;
+  color: #fff;
+  box-shadow: 0px 3px 16px #79b0ff7d;
+}
+
+.type-chords button:active, .type-chords button:focus  {
+  background-color: #0069ff;
+  color: #fff;
+  box-shadow: 0px 3px 16px #79b0ff7d;
+  outline: none
+}
+
+.chords-buttons {
+  display: flex;
+  padding-left: 0;
+}
+
+
+.chords-buttons li {
+  list-style: none;
+  margin: 0;
+  flex: auto;
+}
+
 
 @media (min-width: 1025px) {
   .navbar {
@@ -181,19 +355,52 @@ select#ddlInstrument:focus, select#ddlScale:focus, select#ddlKey:focus {
     display: none;
   }
 
-  .instrument, .scale, .key {
+  .instrument, .tuning, .scale, .key {
     display: flex;
     flex-direction: column;
     margin: 0;
     flex-flow: wrap;
   }
 
-  #guitar, #scale, #key {
+  #guitar, #accordion ,#scale, #key {
     width: 1.5em;
     margin: auto;
     padding-bottom: 0em;
     fill: #0069ff;
     padding-right: 1em;
+  }
+
+  .scroll-canvas {
+    display: none;
+  }
+
+  .freet-options {
+    display: flex;
+    /* justify-content: space-evenly;
+    margin-top: 1em;
+    box-shadow: 0px 3px 16px #79b0ff7d;
+    max-width: 90%;
+    margin: 2em auto auto auto;
+    border-radius: 0.65em; */
+    justify-content: space-between;
+  }
+
+  .type-chords button {
+    padding: 1em 3em;
+    border: none;
+    border-radius: 0.85em;
+    background-color: #fff;
+    box-shadow: 0px 1px 0px 2px #c7deffa3;
+    color: #0069ff;
+    font-weight: 700;
+    font-family: 'Rubik', sans-serif;
+    margin: 0 0.5em 0 0.5em;
+    transition: background-color 0.5s, color 0.5s;
+    cursor: pointer;
+  }
+
+  .chords {
+    padding: 2em;
   }
 }
 

@@ -3,7 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
@@ -23,12 +23,27 @@
     <div class="fret-container">
       <nav id="navbar" class="navbar navbar-light bg-white">
         <a class="navbar-brand font-weight-bold" href="#">Scalenator</a>
+        <div class="slider-wrapper">
+          <!-- <form id="scaleForm" name="scaleForm" oninput="getRange(scale.value)">
+            <input name="scale" type="range" class="slider" min="0" max="7" value="1" step="1" >
+            <p id="rangeScale"></p>
+          </form> -->
+        </div>
         <div class="toolbox">
           <div class="toolbox-dropmenus">
             <div class="instrument">
               <svg id="guitar" viewBox="0 0 473.97 473.91"><path d="M266.33,345.72a7.06,7.06,0,0,0,4-1.27,121,121,0,0,0,17.25-13.6,39.85,39.85,0,0,0,9.62-15.25A7,7,0,0,0,284,311.05a25.87,25.87,0,0,1-6.28,9.9A110.71,110.71,0,0,1,262.28,333a7,7,0,0,0,4,12.72Z" transform="translate(-19.03 -19.08)"/><path d="M491,65.09l-44-44a7.2,7.2,0,0,0-9.9,0l-9.95,10-5.35-5.35a7,7,0,1,0-9.9,9.9h0l5.35,5.35L404.64,53.42l-5.34-5.35A7,7,0,0,0,389.4,58l5.34,5.34-6.93,6.93a7.12,7.12,0,0,0-1.71,2.8L377.76,98.9,267.87,208.8c-37.56-26.54-77.75-27.3-103.66-1.34A144.16,144.16,0,0,0,147.81,228a156.33,156.33,0,0,1-18.2,22.68C119.67,260.61,110.72,263,99.39,266A104.05,104.05,0,0,0,44.93,296.8c-21.38,21.37-29.77,47.5-24.26,75.6,4.8,24.54,20.16,50.32,44.4,74.56s50,39.56,74.56,44.38A86,86,0,0,0,156.19,493a82.14,82.14,0,0,0,59-25.92A104,104,0,0,0,246,412.61c3-11.33,5.34-20.28,15.28-30.21A156.47,156.47,0,0,1,284,364.18a142.94,142.94,0,0,0,20.56-16.4c26-25.91,25.2-66.1-1.34-103.66L413.11,134.24,439,125.89a6.87,6.87,0,0,0,2.8-1.71l6.94-6.93,5.34,5.34a7,7,0,0,0,10.07-9.73,1.37,1.37,0,0,1-.17-.17l-5.35-5.34L471.1,94.84l5.35,5.34a7,7,0,0,0,10.07-9.72l-.17-.18L481,84.94l10-10a7,7,0,0,0,0-9.89ZM224.59,303A39,39,0,0,0,209,287.41L383.92,112.54l15.54,15.54Zm-34.23-6.32A25,25,0,1,1,172.68,304,25,25,0,0,1,190.36,296.64Zm104.29,41.25A130.54,130.54,0,0,1,276,352.69a170,170,0,0,0-24.57,19.79c-12.61,12.61-15.82,24.8-18.92,36.56a90.93,90.93,0,0,1-27.2,48.12c-18.17,18.18-39.36,25-63,20.4C120.51,473.28,97.22,459.26,75,437S38.69,391.5,34.4,369.69c-4.64-23.62,2.23-44.8,20.42-63a90.93,90.93,0,0,1,48.12-27.2c11.77-3.1,24-6.31,36.56-18.93A168.69,168.69,0,0,0,159.28,236a131.89,131.89,0,0,1,14.8-18.68c20.37-20.4,52.64-19.6,83.74,1.48l-64,64c-1.16-.11-2.32-.18-3.49-.18a39,39,0,1,0,39,39h0c0-1.17-.07-2.33-.17-3.48l64-64c21.09,31.09,21.88,63.37,1.49,83.73Zm138.4-224.8-21.76,7-19.39-19.4,7-21.76L442,35.9,476.1,70l-10,10-22.4,22.4Z" transform="translate(-19.03 -19.08)"/><path d="M114.85,351.9a7,7,0,0,0-9.89,0h0l-17,17a7,7,0,0,0,0,9.9h0L133.24,424a7,7,0,0,0,9.89,0h0l17-17a7,7,0,0,0,0-9.89h0Zm23.33,57.27-35.35-35.35,7.07-7.08,35.36,35.36Z" transform="translate(-19.03 -19.08)"/></svg>
-              <select id="ddlInstrument" onchange="onChangeDdlInstrumen(this);"></select>
+              <select id="ddlInstrument" onchange="onChangeDdlInstrument(this);"></select>
             </div>
+
+            <!--Afinacion del acordeón-->
+            <div id="divDdlTuning" style="display: none;">
+              <div class="tuning">
+                <svg id="accordion" viewBox="0 0 473.97 473.91"><path d="M266.33,345.72a7.06,7.06,0,0,0,4-1.27,121,121,0,0,0,17.25-13.6,39.85,39.85,0,0,0,9.62-15.25A7,7,0,0,0,284,311.05a25.87,25.87,0,0,1-6.28,9.9A110.71,110.71,0,0,1,262.28,333a7,7,0,0,0,4,12.72Z" transform="translate(-19.03 -19.08)"/><path d="M491,65.09l-44-44a7.2,7.2,0,0,0-9.9,0l-9.95,10-5.35-5.35a7,7,0,1,0-9.9,9.9h0l5.35,5.35L404.64,53.42l-5.34-5.35A7,7,0,0,0,389.4,58l5.34,5.34-6.93,6.93a7.12,7.12,0,0,0-1.71,2.8L377.76,98.9,267.87,208.8c-37.56-26.54-77.75-27.3-103.66-1.34A144.16,144.16,0,0,0,147.81,228a156.33,156.33,0,0,1-18.2,22.68C119.67,260.61,110.72,263,99.39,266A104.05,104.05,0,0,0,44.93,296.8c-21.38,21.37-29.77,47.5-24.26,75.6,4.8,24.54,20.16,50.32,44.4,74.56s50,39.56,74.56,44.38A86,86,0,0,0,156.19,493a82.14,82.14,0,0,0,59-25.92A104,104,0,0,0,246,412.61c3-11.33,5.34-20.28,15.28-30.21A156.47,156.47,0,0,1,284,364.18a142.94,142.94,0,0,0,20.56-16.4c26-25.91,25.2-66.1-1.34-103.66L413.11,134.24,439,125.89a6.87,6.87,0,0,0,2.8-1.71l6.94-6.93,5.34,5.34a7,7,0,0,0,10.07-9.73,1.37,1.37,0,0,1-.17-.17l-5.35-5.34L471.1,94.84l5.35,5.34a7,7,0,0,0,10.07-9.72l-.17-.18L481,84.94l10-10a7,7,0,0,0,0-9.89ZM224.59,303A39,39,0,0,0,209,287.41L383.92,112.54l15.54,15.54Zm-34.23-6.32A25,25,0,1,1,172.68,304,25,25,0,0,1,190.36,296.64Zm104.29,41.25A130.54,130.54,0,0,1,276,352.69a170,170,0,0,0-24.57,19.79c-12.61,12.61-15.82,24.8-18.92,36.56a90.93,90.93,0,0,1-27.2,48.12c-18.17,18.18-39.36,25-63,20.4C120.51,473.28,97.22,459.26,75,437S38.69,391.5,34.4,369.69c-4.64-23.62,2.23-44.8,20.42-63a90.93,90.93,0,0,1,48.12-27.2c11.77-3.1,24-6.31,36.56-18.93A168.69,168.69,0,0,0,159.28,236a131.89,131.89,0,0,1,14.8-18.68c20.37-20.4,52.64-19.6,83.74,1.48l-64,64c-1.16-.11-2.32-.18-3.49-.18a39,39,0,1,0,39,39h0c0-1.17-.07-2.33-.17-3.48l64-64c21.09,31.09,21.88,63.37,1.49,83.73Zm138.4-224.8-21.76,7-19.39-19.4,7-21.76L442,35.9,476.1,70l-10,10-22.4,22.4Z" transform="translate(-19.03 -19.08)"/><path d="M114.85,351.9a7,7,0,0,0-9.89,0h0l-17,17a7,7,0,0,0,0,9.9h0L133.24,424a7,7,0,0,0,9.89,0h0l17-17a7,7,0,0,0,0-9.89h0Zm23.33,57.27-35.35-35.35,7.07-7.08,35.36,35.36Z" transform="translate(-19.03 -19.08)"/></svg>
+                <select id="ddlTuning" onchange="onChangeDdlTuning(this);"></select>
+              </div>
+            </div>         
+            <!--Afinacion del acordeón-->
   
             <div class="scale">
               <svg id="scale" viewBox="0 0 431.76 445.01"><path d="M430.57,60.6,160.51.25A10,10,0,0,0,148.32,10V289.52c-16.72-13.42-39.4-19.34-60.85-19.34-43.73,0-80.85,24.44-80.85,57.24s37.14,57.23,80.85,57.23,80.85-24.42,80.85-57.23V22.49L418.38,78.37V349.88c-16.73-13.42-39.4-19.34-60.85-19.34-43.73,0-80.85,24.43-80.85,57.24S313.82,445,357.53,445s80.85-24.43,80.85-57.23V70.36A10,10,0,0,0,430.57,60.6Zm-343.1,304c-33,0-60.84-17-60.84-37.23s27.86-37.23,60.84-37.23,60.86,17.05,60.86,37.23S120.46,364.65,87.47,364.65ZM357.53,425c-33,0-60.85-17.05-60.85-37.23s27.87-37.24,60.85-37.24,60.85,17,60.85,37.24S390.52,425,357.53,425Z" transform="translate(-6.62 0)"/></svg>
@@ -42,15 +57,43 @@
           </div>
         </div>
         <svg id="menuToggler" viewBox="0 0 24.5 24.5"><defs><style>.cls-1{stroke-linecap:round;stroke-linejoin:round;stroke-width:5px;}</style></defs><line class="cls-1" x1="12.25" y1="2.5" x2="12.25" y2="22"/><line class="cls-1" x1="22" y1="12.25" x2="2.5" y2="12.25"/></svg>
-      
       </div>
       </nav>
 
-      <!-- <select id="ddlInstrument"></select>
-      <select id="ddlScale"></select>
-      <select id="ddlKey"></select> -->
       <div id="alert">Selecciona</div>
+
+      <!-- FUELLE -->	
+      <div id="divFuelle" style="text-align: center; display: none;">	
+        <div id="fuelle" >Abrir fuelle</div>	
+      </div>	
+      	
+      <!-- FRETBOARD -->
       <canvas id="canvas"></canvas>
+
+      <div class="scroll-canvas">
+        <input type="range" min="0" max="100" value="0" class="slider" id="myRange" step="10" oninput="updateSlider(this.value)"> 
+      </div>
+
+      <div class="freet-container">
+        <h3 class="chords-title">Acordes</h3>
+        <div class="freet-options">
+          <div class="chords-container">
+            <div class="chords">
+              <input id="radTriada" type="radio" name="radio" checked>
+              <label class="chords-label">Triada</label>
+            </div>
+            <div class="chords">
+              <input id="radCuatriada" type="radio" name="radio">
+              <label class="chords-label">Cuatriada</label>
+            </div>
+          </div>
+
+          <div class="type-chords">
+            <ul class="chords-buttons" id="chordContainer"></ul>
+          </div>
+        </div>
+        
+      </div>
 
       <!-- Comentado para usar version local mas liviana -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.1.0/fabric.min.js"></script>
@@ -76,10 +119,75 @@
           menuContainer.classList.remove('show')
         });
       </script>
+      <script>
+        function updateSlider(valor) {
+          // console.log(canvas) 
+          let canvasScroll = document.getElementsByClassName("canvas-container")[0];
+          // canvasScroll.scrollTo(((canvas.clientWidth - canvasScroll.clientWidth)/100 * valor),0)
+          canvasScroll.scroll({
+            top: 0,
+            left: ((canvas.clientWidth - canvasScroll.clientWidth)/100 * valor),
+            behavior: 'smooth'
+          });
+          // console.log((canvas.clientWidth /100 - canvasScroll.clientWidth)* valor)
+          // console.log(valor)
+        }
+      </script>
 
       
     
     <!-- <script src="fabric.min.js"></script> -->
     <script src="canvas.js"></script>
+    <script>
+      function getRange(rangeScale) {
+        let setRangeScale = document.getElementById("rangeScale");
+
+        switch (rangeScale) {
+          case '0':
+            letter = "C";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '1':
+            letter = "D";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '2':
+            letter = "E";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '3':
+            letter = "F";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '4':
+            letter = "B";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '5':
+            letter = "G";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '6':
+            letter = "A";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+          case '7':
+            letter = "B";
+            console.log(letter)
+            setRangeScale.innerText = letter;
+            break;
+        }
+        
+      }
+    </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.45/Tone.js" integrity="sha512-mM6I0/Ifv9v48UNCUYeH16UqgfjrskX3ZC6ntbMQ/fUKgFoAF1eRh1PlB95dDBV59DkG+2iPKqoBTXRy9k8ndA==" crossorigin="anonymous"></script> -->
   </body>
 </html>
