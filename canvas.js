@@ -199,8 +199,10 @@ function setFretboard() {
     let freetRows;
     let ddlInstrument = document.getElementById('ddlInstrument').value;
     let ddlTuning = document.getElementById('ddlTuning').value;
+    let stateFuelle = document.getElementById('fuelle').getAttribute('state');
+    console.log("Estado " + stateFuelle);
     let notes;
-    
+
     switch (ddlInstrument) {
         case 'Guitarra':
             notes = [
@@ -244,28 +246,53 @@ function setFretboard() {
         case "Acordeón":
             switch (ddlTuning) {
                 case "F":
-                    notes = [
-                        ["B", "D", "F", "G#", "C", "D", "F", "G#", "C", "D", ""],
-                        ["F#", "A", "C", "D#", "G", "A", "C", "D#", "G", "A", "C"],
-                        ["C#", "G", "A#", "D", "E", "G", "A#", "D", "E", "G", ""]];
+                    if (stateFuelle == "0") {
+                        notes = [
+                            ["B", "D", "F", "G#", "C", "D", "F", "G#", "C", "D", ""],
+                            ["F#", "A", "C", "D#", "G", "A", "C", "D#", "G", "A", "C"],
+                            ["C#", "G", "A#", "D", "E", "G", "A#", "D", "E", "G", ""]];
+                    }
+                    else {
+                        notes = [
+                            ["C#", "A#", "D#", "G", "A#", "D#", "G", "A#", "D#", "G", ""],
+                            ["E", "F", "A#", "D", "F", "A#", "D", "F", "A#", "D", "F"],
+                            ["B", "F", "A", "C", "F", "A", "C", "F", "A", "C", ""]];
+                    }
                     break;
                 case "E":
-                    notes = [
-                        ["A#", "C#", "E", "G", "B", "C#", "E", "G", "B", "C#", ""],
-                        ["F", "G#", "B", "D", "F#", "G#", "B", "D", "F#", "G#", "B"],
-                        ["C", "F#", "A", "D#", "D#", "F#", "A", "C#", "D#", "F#", ""]];
+                    if (stateFuelle == "0") {
+                        notes = [
+                            ["A#", "C#", "E", "G", "B", "C#", "E", "G", "B", "C#", ""],
+                            ["F", "G#", "B", "D", "F#", "G#", "B", "D", "F#", "G#", "B"],
+                            ["C", "F#", "A", "D#", "D#", "F#", "A", "C#", "D#", "F#", ""]];
+                    }
+                    else {
+                        notes = [
+                            ["C", "A", "D", "F#", "A", "D", "F#", "A", "D", "F#", ""],
+                            ["D#", "E", "A", "C#", "E", "A", "C#", "E", "A", "C#", "E"],
+                            ["A#", "E", "G#", "B", "E", "G#", "B", "E", "G#", "B", ""]];
+                    }
                     break;
                 case "G":
-                    notes = [
-                        ["C#", "E", "G", "A#", "D", "E", "G", "A#", "D", "E", ""],
-                        ["G#", "B", "D", "F", "A", "B", "D", "F", "A", "B", "D"],
-                        ["D#", "A", "C", "E", "F#", "A", "C", "E", "F#", "A", ""]];
+                    if (stateFuelle == "0") {
+                        notes = [
+                            ["C#", "E", "G", "A#", "D", "E", "G", "A#", "D", "E", ""],
+                            ["G#", "B", "D", "F", "A", "B", "D", "F", "A", "B", "D"],
+                            ["D#", "A", "C", "E", "F#", "A", "C", "E", "F#", "A", ""]];
+                    }
+                    else {
+                        notes = [
+                            ["D#", "C", "F", "A", "C", "F", "A", "C", "F", "A", ""],
+                            ["F#", "G", "C", "E", "G", "C", "E", "G", "C", "E", "G"],
+                            ["C#", "G", "B", "D", "G", "B", "D", "G", "B", "D", ""]];
+                    }
                     break;
                 default:
                     break;
             }
             freetColumns = 11;
             freetRows = 3;
+
             //Mostrar fuelle
             let divFuelle = document.getElementById("divFuelle");
             divFuelle.style.display = "block";
@@ -469,6 +496,7 @@ function onChangeDdlKey(ddl) {
     while (chordContainer.firstChild) {
         chordContainer.removeChild(chordContainer.firstChild);
     }
+
     //Generar acordes de la tonalidad
     for (let i in ScaleNotes) {
         //let chordContainer = document.getElementById("chordContainer");
@@ -551,6 +579,31 @@ function onChangeDdlInstrumen(ddl) {
 function getDevice() {
     window.innerWidth < window.innerHeight ? device = 'mobile' : device = "desktop";
     return device;
+}
+
+function onClickFuelle() {
+    let stateFuelle = document.getElementById('fuelle');
+    if (stateFuelle.getAttribute('state') == "0") {
+        stateFuelle.setAttribute("state", "1");
+        stateFuelle.innerHTML = "Cerrar fuelle";
+    }
+    else {
+        stateFuelle.setAttribute("state", "0");
+        stateFuelle.innerHTML = "Abrir fuelle";
+    }
+
+    setFretboard();
+}
+
+function onChangeRadChordType(rad){
+    let radSelected = rad.innerHTML;
+    console.log(radSelected);
+    /*if(radSelected == "Triada"){
+        console.log("Triada");
+    }
+    else{
+        console.log("Cuatriada");
+    }*/
 }
 /*--------------------------------------------------------------------------------*/
 
