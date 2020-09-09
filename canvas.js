@@ -139,22 +139,10 @@ function getclickedElement(element) {
     });
 };
 
-function resizeCanvas(){
+function resizeCanvas() {
     // Haven't resized in 100ms!
-    
-    canvasFabric.clear();
 
-    // if (window.innerHeight > window.innerWidth) {
-    //     device = "mobile";
-    //     canvasFabric.enableRetinaScaling = true;
-    // } else {
-    //     device = "desktop";
-    //     if (window.devicePixelRatio > 1) {
-    //         canvasFabric.enableRetinaScaling = true;
-    //     } else {
-    //         canvasFabric.enableRetinaScaling = false;
-    //     }
-    // }
+    canvasFabric.clear();
 
     device = getDevice();
 
@@ -186,9 +174,9 @@ function resizeCanvas(){
 }
 
 var timeoutResize;
-window.onresize = function(){
-  clearTimeout(timeoutResize);
-  timeoutResize = setTimeout(resizeCanvas, 100);
+window.onresize = function () {
+    clearTimeout(timeoutResize);
+    timeoutResize = setTimeout(resizeCanvas, 100);
 };
 
 
@@ -212,214 +200,88 @@ function setFretboard() {
     let ddlInstrument = document.getElementById('ddlInstrument').value;
     let ddlTuning = document.getElementById('ddlTuning').value;
     let notes;
-    if (device == "mobile") {
-        // switch (ddlInstrument) {
-        //     case 'Guitarra':
-        //         notes = [
-        //             ["E", "A", "D", "G", "B", "E"],
-        //             ["F", "A#", "D#", "G#", "C", "F"],
-        //             ["F#", "B", "E", "A", "C#", "F#"],
-        //             ["G", "C", "F", "A#", "D", "G"],
-        //             ["G#", "C#", "F#", "B", "D#", "G#"],
-        //             ["A", "D", "G", "C", "E", "A"],
-        //             ["A#", "D#", "G#", "C#", "F", "A#"],
-        //             ["B", "E", "A", "D", "F#", "B"],
-        //             ["C", "F", "A#", "D#", "G", "C"],
-        //             ["C#", "F#", "B", "E", "G#", "C#"],
-        //             ["D", "G", "C", "F", "A", "D"],
-        //             ["D#", "G#", "C#", "F#", "A#", "D#"],
-        //             ["E", "A", "D", "G", "B", "E"],
-        //             ["F", "A#", "D#", "G#", "C", "F"],
-        //             ["F#", "B", "E", "A", "C#", "F#"],
-        //             ["G", "C", "F", "A#", "D", "G"],
-        //             ["G#", "C#", "F#", "B", "D#", "G#"],
-        //             ["A", "D", "G", "C", "E", "A"],
-        //             ["A#", "D#", "G#", "C#", "F", "A#"],
-        //             ["B", "E", "A", "D", "F#", "B"],
-        //             ["C", "F", "A#", "D#", "G", "C"],
-        //             ["C#", "F#", "B", "E", "G#", "C#"],
-        //             ["D", "G", "C", "F", "A", "D"],
-        //             ["D#", "G#", "C#", "F#", "A#", "D#"],
-        //             ["E", "A", "D", "G", "B", "E"]];
-        //         freetColumns = 6;
-        //         freetRows = 25;
-        //         break;
-        //     case 'Bajo':
-        //         notes = [
-        //             ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-        //             ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-        //             ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-        //             ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-        //         freetColumns = 25;
-        //         freetRows = 4;
-        //         break;
-        //     case 'Ukelele':
-        //         notes = [
-        //             ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-        //             ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-        //             ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"],
-        //             ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"]];
-        //         freetColumns = 13;
-        //         freetRows = 4;
-        //         break;
-        //     default:
-        //         notes = [
-        //             ["E", "A", "D", "G", "B", "E"],
-        //             ["F", "A#", "D#", "G#", "C", "F"],
-        //             ["F#", "B", "E", "A", "C#", "F#"],
-        //             ["G", "C", "F", "A#", "D", "G"],
-        //             ["G#", "C#", "F#", "B", "D#", "G#"],
-        //             ["A", "D", "G", "C", "E", "A"],
-        //             ["A#", "D#", "G#", "C#", "F", "A#"],
-        //             ["B", "E", "A", "D", "F#", "B"],
-        //             ["C", "F", "A#", "D#", "G", "C"],
-        //             ["C#", "F#", "B", "E", "G#", "C#"],
-        //             ["D", "G", "C", "F", "A", "D"],
-        //             ["D#", "G#", "C#", "F#", "A#", "D#"],
-        //             ["E", "A", "D", "G", "B", "E"],
-        //             ["F", "A#", "D#", "G#", "C", "F"],
-        //             ["F#", "B", "E", "A", "C#", "F#"],
-        //             ["G", "C", "F", "A#", "D", "G"],
-        //             ["G#", "C#", "F#", "B", "D#", "G#"],
-        //             ["A", "D", "G", "C", "E", "A"],
-        //             ["A#", "D#", "G#", "C#", "F", "A#"],
-        //             ["B", "E", "A", "D", "F#", "B"],
-        //             ["C", "F", "A#", "D#", "G", "C"],
-        //             ["C#", "F#", "B", "E", "G#", "C#"],
-        //             ["D", "G", "C", "F", "A", "D"],
-        //             ["D#", "G#", "C#", "F#", "A#", "D#"],
-        //             ["E", "A", "D", "G", "B", "E"]];
-        //         freetColumns = 6;
-        //         freetRows = 25;
-        //         break;
-        // }
-
-        switch (ddlInstrument) {
-            case 'Guitarra':
-                notes = [
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-                freetColumns = 25;
-                freetRows = 6;
-                break;
-            case 'Bajo':
-                notes = [
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-                freetColumns = 25;
-                freetRows = 4;
-                break;
-            case 'Ukelele':
-                notes = [
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"]];
-                freetColumns = 13;
-                freetRows = 4;
-                break;
-            default:
-                notes = [
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]
-                ];
-                freetColumns = 25;
-                freetRows = 6;
-                break;
-        }
-    } else {
-        switch (ddlInstrument) {
-            case 'Guitarra':
-                notes = [
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-                freetColumns = 25;
-                freetRows = 6;
-                break;
-            case 'Bajo':
-                notes = [
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-                freetColumns = 25;
-                freetRows = 4;
-                break;
-            case 'Ukelele':
-                notes = [
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"]];
-                freetColumns = 13;
-                freetRows = 4;
-                break;
-            case "Bajo quinto":
-                notes = [
-                    ["F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#"]];
-                freetColumns = 22;
-                freetRows = 5;
-                break;
-            case "Acordeón":
-                switch (ddlTuning) {
-                    case "F":
-                        notes = [
-                            ["B", "D", "F", "G#", "C", "D", "F", "G#", "C", "D", ""],
-                            ["F#", "A", "C", "D#", "G", "A", "C", "D#", "G", "A", "C"],
-                            ["C#", "G", "A#", "D", "E", "G", "A#", "D", "E", "G", ""]];
-                        break;
-                    case "E":
-                        notes = [
-                            ["A#", "C#", "E", "G", "B", "C#", "E", "G", "B", "C#", ""],
-                            ["F", "G#", "B", "D", "F#", "G#", "B", "D", "F#", "G#", "B"],
-                            ["C", "F#", "A", "D#", "D#", "F#", "A", "C#", "D#", "F#", ""]];
-                        break;
-                    case "G":
-                        notes = [
-                            ["C#", "E", "G", "A#", "D", "E", "G", "A#", "D", "E", ""],
-                            ["G#", "B", "D", "F", "A", "B", "D", "F", "A", "B", "D"],
-                            ["D#", "A", "C", "E", "F#", "A", "C", "E", "F#", "A", ""]];
-                        break;
-                    default:
-                        break;
-                }
-                freetColumns = 11;
-                freetRows = 3;
-                //Mostrar fuelle
-                let divFuelle = document.getElementById("divFuelle");
-                divFuelle.style.display = "block";
-                break;
-            default:
-                notes = [
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                    ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
-                    ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                    ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                    ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                    ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]
-                ];
-                freetColumns = 25;
-                freetRows = 6;
-                break;
-        }
+    
+    switch (ddlInstrument) {
+        case 'Guitarra':
+            notes = [
+                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
+                ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
+                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
+                ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
+                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
+                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
+            freetColumns = 25;
+            freetRows = 6;
+            break;
+        case 'Bajo':
+            notes = [
+                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
+                ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
+                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
+                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
+            freetColumns = 25;
+            freetRows = 4;
+            break;
+        case 'Ukelele':
+            notes = [
+                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
+                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
+                ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"],
+                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"]];
+            freetColumns = 13;
+            freetRows = 4;
+            break;
+        case "Bajo quinto":
+            notes = [
+                ["F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
+                ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
+                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
+                ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
+                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#"]];
+            freetColumns = 22;
+            freetRows = 5;
+            break;
+        case "Acordeón":
+            switch (ddlTuning) {
+                case "F":
+                    notes = [
+                        ["B", "D", "F", "G#", "C", "D", "F", "G#", "C", "D", ""],
+                        ["F#", "A", "C", "D#", "G", "A", "C", "D#", "G", "A", "C"],
+                        ["C#", "G", "A#", "D", "E", "G", "A#", "D", "E", "G", ""]];
+                    break;
+                case "E":
+                    notes = [
+                        ["A#", "C#", "E", "G", "B", "C#", "E", "G", "B", "C#", ""],
+                        ["F", "G#", "B", "D", "F#", "G#", "B", "D", "F#", "G#", "B"],
+                        ["C", "F#", "A", "D#", "D#", "F#", "A", "C#", "D#", "F#", ""]];
+                    break;
+                case "G":
+                    notes = [
+                        ["C#", "E", "G", "A#", "D", "E", "G", "A#", "D", "E", ""],
+                        ["G#", "B", "D", "F", "A", "B", "D", "F", "A", "B", "D"],
+                        ["D#", "A", "C", "E", "F#", "A", "C", "E", "F#", "A", ""]];
+                    break;
+                default:
+                    break;
+            }
+            freetColumns = 11;
+            freetRows = 3;
+            //Mostrar fuelle
+            let divFuelle = document.getElementById("divFuelle");
+            divFuelle.style.display = "block";
+            break;
+        default:
+            notes = [
+                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
+                ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
+                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
+                ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
+                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
+                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]
+            ];
+            freetColumns = 25;
+            freetRows = 6;
+            break;
     }
 
     console.log(`Device: ${device}`)
@@ -432,23 +294,20 @@ function setFretboard() {
     let freetLeft = 0;
     let freetTop = freetLabel - freetStroke;
 
-    // let freetWidth = (innerWidth - freetStroke) / freetColumns;
-    // let freetHeight = (availableHeight - freetLabel) / freetRows;
-
     // Parametros de dimension
     let freetWidth = (innerWidth - freetStroke) / freetColumns;
-    let freetHeight = ((availableHeight - freetLabel) - (availableHeight /3)) / freetRows;
+    let freetHeight = ((availableHeight - freetLabel) - (availableHeight / 3)) / freetRows;
 
     if (device == 'mobile') {
-        freetWidth = innerWidth/8;
-        freetHeight = 40;    
+        freetWidth = innerWidth / 8;
+        freetHeight = 40;
 
-        canvasFabric.setWidth((innerWidth/8) * freetColumns + freetStroke);
+        canvasFabric.setWidth((innerWidth / 8) * freetColumns + freetStroke);
         canvasFabric.setHeight(freetHeight * freetRows + freetLabel)
 
         document.getElementsByClassName('canvas-container')[0].style.width = availableWidth + "px";
 
-        console.log((innerWidth/8) * freetRows)
+        console.log((innerWidth / 8) * freetRows)
     }
 
     // Setting for desktop
@@ -460,7 +319,7 @@ function setFretboard() {
         canvasFabric.setWidth(canvasFitWidth);
         canvasFabric.setHeight(canvasFitHeight)
     }
-    
+
 
     for (i = 0; i < freetColumns; i++) {
         let circle = new fabric.Circle({
@@ -599,7 +458,7 @@ function onChangeDdlKey(ddl) {
 
                 // Change letter color
                 fretNotes[i].set('fill', '#ffffff');
-                fretNotes[i].fontWeight = 'bold';            
+                fretNotes[i].fontWeight = 'bold';
             }
         }
     }
