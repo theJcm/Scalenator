@@ -152,7 +152,7 @@ function resizeCanvas() {
         if (window.devicePixelRatio > 1) {
             canvasFabric.enableRetinaScaling = true;
         } else {
-            canvasFabric.enableRetinaScaling = false;
+            canvasFabric.enableRetinaScaling = true;
         }
     }
 
