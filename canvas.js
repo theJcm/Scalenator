@@ -421,6 +421,7 @@ function setFretboard() {
                 fontFamily: "sans-serif",
                 evented: false,
                 selectable: false,
+                fill: '#E06155',
                 width: freetWidth,
                 height: freetHeight,
                 originY: 'center',
@@ -459,7 +460,7 @@ function onChangeDdlKey(ddl) {
         let fret = fretboard[i];
         fret.set('fill', `rgb(255,255,255)`);
 
-        fretNotes[i].set('fill', '#000000');
+        fretNotes[i].set('fill', '#E06155');
         fretNotes[i].fontWeight = 'normal';
     }
 
