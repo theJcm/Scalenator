@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  font-family: 'Century gothic', 'Rubik', sans-serif;
+  font-family: 'Rubik';
   background: #fff;
 }
 
@@ -83,16 +83,19 @@ body {
 
 #ddlInstrument, #ddlTuning ,#ddlScale, #ddlKey {
   margin: auto;
-  background: #fff;
+  background: #e06155;
   border: none;
-  border-radius: 0.45em;
+  border-radius: 0.65em;
   padding: 0.3em 0.2em;
-  box-shadow: 0px 1px 0px 2px #c7deffa3;
 }
 
 select#ddlInstrument, select#ddlTuning, select#ddlScale, select#ddlKey {
-  color: #0069ff;
+  color: #fff;
   font-weight: 500;
+}
+
+select#ddlInstrument:focus, select#ddlTuning:focus, select#ddlScale:focus, select#ddlKey:focus {
+  box-shadow: 0px 9px 19px 0px #ff6e614f;
 }
 
 select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, select#ddlKey:focus {
@@ -103,9 +106,9 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   flex: 1 1 auto;
   position: absolute;
   right: 1em;
-  background: #fff;
-  box-shadow: 0px 3px 16px #79b0ff7d;
-  border-radius: 0.65em;
+  background: #FF6E61;
+  box-shadow: 0px 9px 19px 0px #ff6e614f;
+  border-radius: 1.55em;
   z-index: 1;
   padding: 1em;
   top: 2.5em;
@@ -134,12 +137,12 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   width: 1.5em;
   margin: auto;
   padding-bottom: 0.5em;
-  fill: #0069ff;
+  fill: #fff;
 }
 
 #menuToggler {
   width: 1em;
-  stroke: #0069ff;
+  stroke: #FF6E61;
   position: relative;
   z-index: 2;
 }
@@ -171,7 +174,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   height: 1.1em;
   width: 100%;
   /* background: #79b0ff; */
-  background: #79b0ff40;
+  background: #ff6e6130;
   outline: none;
   border-radius: 1em;
 }
@@ -181,7 +184,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   appearance: none;
   width: 5em;
   height: 1.1em;
-  background: #0069ff;
+  background: #FF6E61;
   cursor: pointer;
   border-radius: 1em;
 }
@@ -208,10 +211,11 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 .freet-container {
   max-width: 90%;
   justify-content: space-evenly;
-  margin-top: 1em;
-  margin: 2em auto auto auto;
-  border-radius: 0.65em;
-  box-shadow: 0px 1px 0px 2px #c7deffa3;
+  margin: 1em auto auto auto;
+  border-radius: 2.1em;
+  /* box-shadow: 0px 1px 0px 2px #c7deffa3; */
+  background: #FF6E61;
+  box-shadow: 0px 9px 19px 0px #ff6e614f;
 }
 
 .freet-options {
@@ -228,7 +232,8 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 .chords-title {
   margin: 0;
   padding: 1em 1.5em 0 1.5em;
-  color: #0069ff;
+  color: #FFFFFF;
+  font-weight: 500;
 }
 
 .chords-container {
@@ -240,6 +245,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   display: flex;
   padding: 2em 2em 0em 2em;
   align-self: center;
+  color: #fff;
 }
 
 .chords-label {
@@ -255,11 +261,11 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   margin-right: 0.5em;
   position: relative;
   transition: background-color 0.3s;
-  background-color: #c7deff;
+  background-color: #E06155;
 }
 
 .chords input:hover {
-  background-color: #79b0ff;
+  background-color: #FFE4E1;
 }
 
 .chords input:focus {
@@ -276,10 +282,11 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 }
 
 .chords input:checked{
-  background: #0069ff;
+  background: #FFE4E1;
+  box-shadow: 0px 3px 6px #E06155;
 }
 
-.chords input:checked:after {
+/* .chords input:checked:after {
   width: 0.72em;
   height: 0.72em;
   background-color: #fff;
@@ -288,7 +295,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   left: 5px;
   top: 5px;
   border-radius: 100%;
-}
+} */
 
 .type-chords {
   padding: 1em;
@@ -297,40 +304,43 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 .type-chords button {
   padding: 1em 0.8em;
   border: none;
-  border-radius: 0.85em;
-  background-color: #fff;
-  box-shadow: 0px 1px 0px 2px #c7deffa3;
-  color: #0069ff;
-  font-weight: 700;
+  border-radius: 1.15em;
+  background-color: #E06155;
+  color: #fff;
+  font-weight: 500;
   font-family: 'Rubik', sans-serif;
   margin: 0 0.5em 0 0.5em;
   transition: background-color 0.5s, color 0.5s;
   cursor: pointer;
+  width: max-content;
 }
 
 .type-chords button:hover {
-  background-color: #0069ff;
-  color: #fff;
-  box-shadow: 0px 3px 16px #79b0ff7d;
+  background-color: #FFE4E1;
+  color: #C25349;
+  box-shadow: 0px 3px 6px #e06155c9;
 }
 
 .type-chords button:active, .type-chords button:focus  {
-  background-color: #0069ff;
-  color: #fff;
-  box-shadow: 0px 3px 16px #79b0ff7d;
+  background-color: #FFE4E1;
+  color: #C25349;
+  box-shadow: 0px 3px 6px #e06155c9;
   outline: none
 }
 
 .chords-buttons {
   display: flex;
   padding-left: 0;
+  flex-flow: nowrap;
+  overflow: auto;
 }
 
 
 .chords-buttons li {
   list-style: none;
   margin: 0;
-  flex: auto;
+  flex: none;
+  padding: 0.4em 0;
 }
 
 
@@ -366,12 +376,16 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
     width: 1.5em;
     margin: auto;
     padding-bottom: 0em;
-    fill: #0069ff;
+    fill: #ff6e61;
     padding-right: 1em;
   }
 
   .scroll-canvas {
     display: none;
+  }
+
+  .freet-container {
+    margin: 2em auto auto auto;
   }
 
   .freet-options {
@@ -384,14 +398,14 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
     border-radius: 0.65em; */
     justify-content: space-between;
   }
+  
 
   .type-chords button {
-    padding: 1em 3em;
+    padding: 1em 0.8em;
     border: none;
-    border-radius: 0.85em;
-    background-color: #fff;
-    box-shadow: 0px 1px 0px 2px #c7deffa3;
-    color: #0069ff;
+    border-radius: 1.55em;
+    background-color: #E06155;
+    color: #fff;
     font-weight: 700;
     font-family: 'Rubik', sans-serif;
     margin: 0 0.5em 0 0.5em;
@@ -401,6 +415,13 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 
   .chords {
     padding: 2em;
+  }
+
+  .chords-buttons {
+    display: flex;
+    padding-left: 0;
+    flex-flow: wrap; 
+    overflow: auto;
   }
 }
 

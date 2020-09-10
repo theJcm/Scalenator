@@ -353,7 +353,7 @@ function setFretboard() {
             left: freetLeft,
             top: 0,
             radius: 12,
-            fill: '#0069ff',
+            fill: '#393939',
             width: freetWidth,
             height: freetLabel,
             // centeredScaling: true,
@@ -389,7 +389,7 @@ function setFretboard() {
                 top: freetTop,
                 width: freetWidth,
                 height: freetHeight,
-                stroke: '#c8e4ff',
+                stroke: 'rgb(255, 110, 97, .39)',
                 strokeWidth: freetStroke,
 
                 selectable: false,
@@ -433,14 +433,16 @@ function setFretboard() {
             freetTop += freetHeight;
         }
 
-        let freetLine = new fabric.Line([0, 0, 0, canvasFitHeight], {
+        let freetLine = new fabric.Line([0, 0, 0, canvasFitHeight-freetLabel-4], {
             left: freetLeft,
             top: freetLabel,
-            stroke: "#66aaff",
+            stroke: "#FF6E61",
             strokeWidth: 3,
             selectable: false,
             selection: false,
             objectCaching: false,
+            strokeLineCap: 'round',
+            strokeLineJoin: 'round'
         });
 
         canvasFabric.add(freetLine);
@@ -481,10 +483,10 @@ function onChangeDdlKey(ddl) {
             if (fretboard[i].note == ScaleNotes[note]) {
                 let fret = fretboard[i];
                 //console.log(fret)
-                fret.set('fill', '#0069ff');
+                fret.set('fill', '#FFE4E1');
 
                 // Change letter color
-                fretNotes[i].set('fill', '#ffffff');
+                fretNotes[i].set('fill', '#FF6E61');
                 fretNotes[i].fontWeight = 'bold';
             }
         }
