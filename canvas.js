@@ -422,7 +422,7 @@ function setFretboard() {
                 top: freetTop + freetHeight * 0.5,
                 fontSize: 10,
                 textAlign: 'center',
-                fontFamily: "sans-serif",
+                fontFamily: "Arial",
                 evented: false,
                 selectable: false,
                 fill: '#E06155',
@@ -488,7 +488,7 @@ function onChangeDdlKey(ddl) {
             if (fretboard[i].note == ScaleNotes[note]) {
                 let fret = fretboard[i];
                 //console.log(fret)
-                fret.set('fill', '#FFE4E1');
+                fret.set('fill', '#ff6e6130');
 
                 // Change letter color
                 fretNotes[i].set('fill', '#FF6E61');
