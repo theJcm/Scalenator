@@ -417,21 +417,40 @@ function setFretboard() {
 
             canvasFabric.add(rect);
 
-            let rectNote = new fabric.Textbox(rect.note, {
-                left: freetLeft,
-                top: freetTop + freetHeight * 0.5,
-                fontSize: 10,
-                textAlign: 'center',
-                fontFamily: "Arial",
-                evented: false,
-                selectable: false,
-                fill: '#E06155',
-                width: freetWidth,
-                height: freetHeight,
-                originY: 'center',
-                objectCaching: false,
-            });
+            let rectNote = null;
+            if (device == "mobile"){
+                rectNote = new fabric.Textbox(rect.note, {
+                    left: freetLeft,
+                    top: freetTop + freetHeight * 0.5,
+                    fontSize: 10,
+                    textAlign: 'center',
+                    fontFamily: "Arial",
+                    evented: false,
+                    selectable: false,
+                    fill: '#E06155',
+                    width: freetWidth,
+                    height: freetHeight,
+                    originY: 'center',
+                    objectCaching: false,
+                });    
+            } else {
+                rectNote = new fabric.Textbox(rect.note, {
+                    left: freetLeft,
+                    top: freetTop + freetHeight * 0.5,
+                    fontSize: 12,
+                    textAlign: 'center',
+                    fontFamily: "Arial",
+                    evented: false,
+                    selectable: false,
+                    fill: '#E06155',
+                    width: freetWidth,
+                    height: freetHeight,
+                    originY: 'center',
+                    objectCaching: false,
+                });    
+            }
 
+            
             fretNotes.push(rectNote);
             canvasFabric.add(rectNote);
 

@@ -30,7 +30,7 @@ body {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: .5rem 1rem;
+  padding: .5rem 1em 0 1rem;
   background: #fff;
 
   /* Compensar borde del navbar */
@@ -372,10 +372,6 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 
 /* -------------- DESKTOP -------------------- */
 @media (min-width: 1025px) {
-  .navbar {
-    padding: 1rem 1rem;
-  }
-
   .toolbox {
     display: block;
     position: relative;
