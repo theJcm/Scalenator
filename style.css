@@ -1,7 +1,8 @@
 html, body {
   height: 100%;
   width: 100%;
-  font-family: 'Rubik';
+  /* font-family: 'Rubik'; */
+  font-family: 'Nunito', sans-serif;
   background: #fff;
 }
 
@@ -10,12 +11,13 @@ body {
 }
 
 #navbar {
-  border-bottom: 1px solid #eaeaea;
+  /* border-bottom: 1px solid #eaeaea; */
 }
 
 .navbar a {
   text-decoration: none;
   background-color: transparent;
+  color: #ff6e61;
 }
 
 .navbar {
@@ -45,9 +47,7 @@ body {
   white-space: nowrap;
 }
 
-.navbar-light .navbar-brand {
-  color: rgba(0,0,0,.9);
-}
+
 
 .font-weight-bold {
   font-weight: 700!important;
@@ -77,21 +77,24 @@ body {
 }
 
 #toolbox {
-  background: #fff;
+  /* background: #fff; */
   padding: 1em;
 }
 
 #ddlInstrument, #ddlTuning ,#ddlScale, #ddlKey {
   margin: auto;
-  background: #e06155;
+  /* background: #e06155; */
+  /* background: #fff6f6; */
+  background: #fff1f1;
   border: none;
   border-radius: 0.65em;
   padding: 0.3em 0.2em;
 }
 
 select#ddlInstrument, select#ddlTuning, select#ddlScale, select#ddlKey {
-  color: #fff;
-  font-weight: 500;
+  /* color: #fff; */
+  color: #ff6e61;
+  font-weight: 700;
 }
 
 select#ddlInstrument:focus, select#ddlTuning:focus, select#ddlScale:focus, select#ddlKey:focus {
@@ -106,7 +109,9 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   flex: 1 1 auto;
   position: absolute;
   right: 1em;
-  background: #FF6E61;
+  /* background: #FF6E61; */
+  /* background: #ffe4e1; */
+  background: #fff;
   box-shadow: 0px 9px 19px 0px #ff6e614f;
   border-radius: 1.55em;
   z-index: 1;
@@ -136,8 +141,9 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 #guitar, #scale, #key {
   width: 1.5em;
   margin: auto;
-  padding-bottom: 0.5em;
-  fill: #fff;
+  padding-bottom: 1em;
+  /* fill: #fff; */
+  fill: #ff8378;
 }
 
 #menuToggler {
@@ -199,6 +205,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 
 .canvas-container {
   overflow: hidden;
+  margin: 0 0 0 1em;
   /* box-sizing: border-box; */
 }
 
@@ -209,13 +216,16 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 }
 
 .freet-container {
-  max-width: 90%;
   justify-content: space-evenly;
-  margin: 1em auto auto auto;
+  margin: 1em;
   border-radius: 2.1em;
   /* box-shadow: 0px 1px 0px 2px #c7deffa3; */
-  background: #FF6E61;
-  box-shadow: 0px 9px 19px 0px #ff6e614f;
+  /* background: #FF6E61; */
+  /* background: #ffe4e19e; */
+  /* background:#ffe4e1; */
+  background:#fff;
+  box-shadow: 0px 0px 15px 0px #ffdfdf;
+  /* box-shadow: 0px 9px 19px 0px #ff6e614f; */
 }
 
 .freet-options {
@@ -232,8 +242,9 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 .chords-title {
   margin: 0;
   padding: 1em 1.5em 0 1.5em;
-  color: #FFFFFF;
-  font-weight: 500;
+  /* color: #FFFFFF; */
+  color: #ff6e61;
+  font-weight: 700;
 }
 
 .chords-container {
@@ -243,13 +254,15 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 
 .chords {
   display: flex;
-  padding: 2em 2em 0em 2em;
+  padding: 1em 2em 0em 2em;
   align-self: center;
   color: #fff;
 }
 
 .chords-label {
-  font-weight: 400;
+  /* font-weight: 400; */
+  font-weight: 700;
+  color: #ff6e61;
 }
 
 .chords input {
@@ -261,11 +274,13 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   margin-right: 0.5em;
   position: relative;
   transition: background-color 0.3s;
-  background-color: #E06155;
+  /* background-color: #E06155; */
+  background-color: #fff6f6;
 }
 
 .chords input:hover {
-  background-color: #FFE4E1;
+  /* background-color: #FFE4E1; */
+  background-color: #ff8378;
 }
 
 .chords input:focus {
@@ -282,8 +297,9 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 }
 
 .chords input:checked{
-  background: #FFE4E1;
-  box-shadow: 0px 3px 6px #E06155;
+  /* background: #FFE4E1;
+  box-shadow: 0px 3px 6px #E06155; */
+  background-color: #ff8378;
 }
 
 /* .chords input:checked:after {
@@ -298,17 +314,22 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 } */
 
 .type-chords {
-  padding: 1em;
+  padding: 0 1em 1em 1em;
 }
 
 .type-chords button {
-  padding: 1em 0.8em;
+  padding: 1em 1.8em;
   border: none;
   border-radius: 1.15em;
-  background-color: #E06155;
-  color: #fff;
+  /* background-color: #E06155; */
+  /* background-color: #fff; */
+  /* background-color: #fff6f6; */
+  background-color: #fff1f1;
+  /* color: #fff; */
+  color: #ff6e61;
   font-weight: 500;
-  font-family: 'Rubik', sans-serif;
+  /* font-family: 'Rubik', sans-serif; */
+  font-family: 'Nunito', sans-serif;
   margin: 0 0.5em 0 0.5em;
   transition: background-color 0.5s, color 0.5s;
   cursor: pointer;
@@ -316,15 +337,20 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 }
 
 .type-chords button:hover {
-  background-color: #FFE4E1;
-  color: #C25349;
-  box-shadow: 0px 3px 6px #e06155c9;
+  /* background-color: #FFE4E1; */
+  background-color: #ff6e613d;
+  /* color: #C25349; */
+  color: #ff6e61;
+  font-weight: 700;
+  /* box-shadow: 0px 3px 6px #e06155c9; */
 }
 
 .type-chords button:active, .type-chords button:focus  {
   background-color: #FFE4E1;
-  color: #C25349;
-  box-shadow: 0px 3px 6px #e06155c9;
+  /* color: #C25349; */
+  color: #ff6e61;
+  /* box-shadow: 0px 3px 6px #e06155c9; */
+  background-color: #ff6e613d;
   outline: none
 }
 
@@ -344,6 +370,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 }
 
 
+/* -------------- DESKTOP -------------------- */
 @media (min-width: 1025px) {
   .navbar {
     padding: 1rem 1rem;
@@ -376,12 +403,18 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
     width: 1.5em;
     margin: auto;
     padding-bottom: 0em;
-    fill: #ff6e61;
+    /* fill: #ff6e61; */
+    fill: #ff8378;
     padding-right: 1em;
   }
 
   .scroll-canvas {
     display: none;
+  }
+
+  .canvas-container {
+    overflow: hidden;
+    margin: 0;
   }
 
   .freet-container {
@@ -407,7 +440,8 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
     background-color: #E06155;
     color: #fff;
     font-weight: 700;
-    font-family: 'Rubik', sans-serif;
+    /* font-family: 'Rubik', sans-serif; */
+    font-family: 'Nunito', sans-serif;
     margin: 0 0.5em 0 0.5em;
     transition: background-color 0.5s, color 0.5s;
     cursor: pointer;

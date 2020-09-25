@@ -152,7 +152,7 @@ function resizeCanvas() {
         if (window.devicePixelRatio > 1) {
             canvasFabric.enableRetinaScaling = true;
         } else {
-            canvasFabric.enableRetinaScaling = true;
+            canvasFabric.enableRetinaScaling = false;
         }
     }
 
@@ -332,7 +332,9 @@ function setFretboard() {
         canvasFabric.setWidth((innerWidth / 8) * freetColumns + freetStroke);
         canvasFabric.setHeight(freetHeight * freetRows + freetLabel)
 
-        document.getElementsByClassName('canvas-container')[0].style.width = availableWidth + "px";
+        //
+        const canvasMargin = 16;  
+        document.getElementsByClassName('canvas-container')[0].style.width = availableWidth - canvasMargin * 2 + "px";
 
         console.log((innerWidth / 8) * freetRows)
     }
@@ -353,7 +355,8 @@ function setFretboard() {
             left: freetLeft,
             top: 0,
             radius: 12,
-            fill: '#393939',
+            // fill: '#393939',
+            fill: '#ff6e611c',
             width: freetWidth,
             height: freetLabel,
             // centeredScaling: true,
@@ -372,7 +375,8 @@ function setFretboard() {
             fontWeight: 'bold',
             textAlign: 'center',
             fontFamily: "sans-serif",
-            fill: '#fff',
+            // fill: '#fff',
+            fill: '#FF6E61',
             // centeredScaling: true,
             evented: false,
             selectable: false,
@@ -438,7 +442,7 @@ function setFretboard() {
             left: freetLeft,
             top: freetLabel,
             stroke: "#FF6E61",
-            strokeWidth: 3,
+            strokeWidth: 4,
             selectable: false,
             selection: false,
             objectCaching: false,
@@ -610,12 +614,14 @@ function onChangeRadChordType(rad){
 }
 /*--------------------------------------------------------------------------------*/
 
-let toggleFullscreen = document.getElementsByTagName('nav')[0];
+// let toggleFullscreen = document.getElementsByTagName('nav')[0];
 
-toggleFullscreen.addEventListener('click', () => {
-    if (device == 'mobile') {
-        if (!document.fullscreenElement) {
-            document.body.requestFullscreen();
-        }
-    }
-});
+
+// Toggle fullscreen
+// toggleFullscreen.addEventListener('click', () => {
+//     if (device == 'mobile') {
+//         if (!document.fullscreenElement) {
+//             document.body.requestFullscreen();
+//         }
+//     }
+// });
