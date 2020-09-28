@@ -46,6 +46,19 @@ var canvasFabric = new fabric.Canvas('canvas', {
 let device;
 window.innerWidth < window.innerHeight ? device = 'mobile' : device = "desktop";
 
+//Tone Js
+let sampler = new Tone.Sampler({
+    urls: {
+        A1: 'A1.ogg',
+        C3: 'C3.ogg',
+        E2: 'E2.ogg',
+    },
+    baseUrl: 'https://raw.githubusercontent.com/theJcm/Scalenator/master/samples/guitar/',
+    onload: function(){
+        console.log('listo');
+    },
+}).toDestination();
+
 /*---------------------------------------------------------------------------*/
 
 /*----------------------------- FUNCION AL CARGAR ----------------------------------------*/
@@ -57,8 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //Pintar diapason(mastil)
     setFretboard();
 
-    //Tone JS
-    
 });
 /*----------------------------------------------------------------------------------------*/
 
@@ -133,12 +144,14 @@ function createDdlInstrument() {
 
 function getclickedElement(element) {
     element.on('mousedown', function () {
-        // console.log(element);
 
-        let alert = document.getElementById("alert");
-        alert.innerText = element.name;
+        //let alert = document.getElementById("alert");
+        //alert.innerText = element.name;
 
-        element.set('fill', `rgb(0,255,255)`);
+        element.set('fill', `rgb(255, 118, 117)`);
+
+        let note = element.note;
+        sampler.triggerAttackRelease(note + "3", 0.5);
     });
 };
 
@@ -314,7 +327,7 @@ function setFretboard() {
             break;
     }
 
-    console.log(`Device: ${device}`)
+    //console.log(`Device: ${device}`)
 
     // Freet parametros para dibujar canvas
     let freetLabel = availableHeight / 14;
@@ -404,7 +417,7 @@ function setFretboard() {
                 name: `Rectangle_[${i}][${j}]`,
                 objectCaching: false,
 
-                // Set tild Note
+                // Nombre de nota
                 note: notes[j][i]
             });
 
@@ -528,17 +541,32 @@ function onChangeDdlKey(ddl) {
 
     //Generar acordes de la tonalidad
     for (let i in ScaleNotes) {
-        //let chordContainer = document.getElementById("chordContainer");
+        let ChordNotes;
         let liElement = document.createElement("li");
         let buttonElement = document.createElement("button");
         switch (ddlScale) {
             case "Mayor":
                 buttonElement.innerHTML = ScaleNotes[i] + " " + majorChords[i];
+                switch(majorChords[i]){
+                    case "Mayor":
+                        ChordNotes = findMayorScale(ScaleNotes[i]);
+                        break;
+                    case "Menor":
+                        ChordNotes = findMinorScale(ScaleNotes[i]);
+                        break;
+                    case "Semidisminuido":
+                        ChordNotes = findMinorScale(ScaleNotes[i]);
+                        break;
+                }
                 break;
             case "Menor":
                 buttonElement.innerHTML = ScaleNotes[i] + " " + minorChords[i];
                 break;
-        }
+        }    
+
+        buttonElement.setAttribute("Notes", ChordNotes[0] + ", " + ChordNotes[2] + ", " + ChordNotes[4]);
+        buttonElement.setAttribute("onclick", "onClickChord(this);");
+
         liElement.appendChild(buttonElement);
         chordContainer.appendChild(liElement);
     }
@@ -567,6 +595,7 @@ function onChangeDdlInstrument(ddl) {
     let ddlKey = document.getElementById('ddlKey');
     ddlKey.options[0].selected = true;*/
 }
+
 function onChangeDdlTuning(ddl) {
     canvasFabric.clear();
     setFretboard();
@@ -575,6 +604,7 @@ function onChangeDdlTuning(ddl) {
     //Limpiar todo
     clearAll();
 }
+
 function clearAll() {
     //Resetear los elementos
     let ddlScale = document.getElementById('ddlScale');
@@ -633,6 +663,13 @@ function onChangeRadChordType(rad){
     else{
         console.log("Cuatriada");
     }*/
+}
+
+function onClickChord(e){
+    let notes = e.getAttribute("Notes").split(",");
+    console.log(notes);
+
+    sampler.triggerAttackRelease([notes[0] + "3", notes[1] + "3", notes[2] + "3" ], 1.5);
 }
 /*--------------------------------------------------------------------------------*/
 
