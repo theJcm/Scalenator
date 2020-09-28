@@ -14,6 +14,9 @@ let majorScale = [0, 2, 2, 1, 2, 2, 2];
 //Escala Menor
 let minorScale = [0, 2, 1, 2, 2, 1, 2];
 
+//Escala Disminuida
+let diminishedScale = [0, 3, 3, 3, 3, 3, 3];
+
 //Acordes Mayor
 let majorChords = ["Mayor", "Menor", "Menor", "Mayor", "Mayor", "Menor", "Semidisminuido"];
 
@@ -95,6 +98,16 @@ function findMinorScale(root) {
     return res;
 }
 
+function findDiminishedScale(root){
+    let res = [];
+    let idx = chromaticScale.indexOf(root);
+    diminishedScale.forEach(function (itm) {
+        res.push(chromaticScale[idx + itm]);
+        idx = idx + itm;
+    });
+    return res;
+}
+
 function createDdlKey() {
     //Cargar el combo de tonalidad(key)
     let keys = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
@@ -151,7 +164,8 @@ function getclickedElement(element) {
         element.set('fill', `rgb(255, 118, 117)`);
 
         let note = element.note;
-        sampler.triggerAttackRelease(note + "3", 0.5);
+        let octave = element.octave;
+        sampler.triggerAttackRelease(note + octave, 0.5);
     });
 };
 
@@ -216,12 +230,11 @@ function setFretboard() {
     let ddlInstrument = document.getElementById('ddlInstrument').value;
     let ddlTuning = document.getElementById('ddlTuning').value;
     let stateFuelle = document.getElementById('fuelle').getAttribute('state');
-    console.log("Estado " + stateFuelle);
     let notes;
 
     switch (ddlInstrument) {
         case 'Guitarra':
-            notes = [
+            /*notes = [
                 ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
                 ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
                 ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
@@ -229,7 +242,17 @@ function setFretboard() {
                 ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
                 ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
             freetColumns = 25;
-            freetRows = 6;
+            freetRows = 6;*/
+
+            //Prueba
+            notes = [
+                [["A", "5"], ["A#", "5"], ["B", "5"], ["C", "5"], ["C#", "5"], ["D", "5"], ["D#", "5"], ["E", "5"], ["F", "5"], ["F#", "5"], ["G", "5"], ["G#", "5"], ["A", "5"]],
+                [["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"], ["A#", "4"], ["B", "4"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"]],
+                [["C", "2"], ["C#", "2"], ["D", "2"], ["D#", "2"], ["E", "2"], ["F", "2"], ["F#", "2"], ["G", "2"], ["G#", "2"], ["A", "2"], ["A#", "2"], ["B", "2"], ["C", "2"]],
+                [["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"]]];
+            freetColumns = 13;
+            freetRows = 4;
+
             break;
         case 'Bajo':
             notes = [
@@ -242,10 +265,10 @@ function setFretboard() {
             break;
         case 'Ukelele':
             notes = [
-                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"],
-                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"]];
+                [["A", "5"], ["A#", "5"], ["B", "5"], ["C", "5"], ["C#", "5"], ["D", "5"], ["D#", "5"], ["E", "5"], ["F", "5"], ["F#", "5"], ["G", "5"], ["G#", "5"], ["A", "5"]],
+                [["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"], ["A#", "4"], ["B", "4"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"]],
+                [["C", "2"], ["C#", "2"], ["D", "2"], ["D#", "2"], ["E", "2"], ["F", "2"], ["F#", "2"], ["G", "2"], ["G#", "2"], ["A", "2"], ["A#", "2"], ["B", "2"], ["C", "2"]],
+                [["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"]]];
             freetColumns = 13;
             freetRows = 4;
             break;
@@ -326,8 +349,6 @@ function setFretboard() {
             freetRows = 6;
             break;
     }
-
-    //console.log(`Device: ${device}`)
 
     // Freet parametros para dibujar canvas
     let freetLabel = availableHeight / 14;
@@ -418,7 +439,8 @@ function setFretboard() {
                 objectCaching: false,
 
                 // Nombre de nota
-                note: notes[j][i]
+                note: notes[j][i][0],
+                octave: notes[j][i][1], 
             });
 
             // Add object to array  
@@ -555,12 +577,23 @@ function onChangeDdlKey(ddl) {
                         ChordNotes = findMinorScale(ScaleNotes[i]);
                         break;
                     case "Semidisminuido":
-                        ChordNotes = findMinorScale(ScaleNotes[i]);
+                        ChordNotes = findDiminishedScale(ScaleNotes[i]);
                         break;
                 }
                 break;
             case "Menor":
                 buttonElement.innerHTML = ScaleNotes[i] + " " + minorChords[i];
+                switch(minorChords[i]){
+                    case "Mayor":
+                        ChordNotes = findMayorScale(ScaleNotes[i]);
+                        break;
+                    case "Menor":
+                        ChordNotes = findMinorScale(ScaleNotes[i]);
+                        break;
+                    case "Semidisminuido":
+                        ChordNotes = findDiminishedScale(ScaleNotes[i]);
+                        break;
+                }
                 break;
         }    
 
@@ -667,8 +700,6 @@ function onChangeRadChordType(rad){
 
 function onClickChord(e){
     let notes = e.getAttribute("Notes").split(",");
-    console.log(notes);
-
     sampler.triggerAttackRelease([notes[0] + "3", notes[1] + "3", notes[2] + "3" ], 1.5);
 }
 /*--------------------------------------------------------------------------------*/
