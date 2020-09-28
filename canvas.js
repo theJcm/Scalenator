@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //Pintar diapason(mastil)
     setFretboard();
+
+    //Tone JS
+    
 });
 /*----------------------------------------------------------------------------------------*/
 
