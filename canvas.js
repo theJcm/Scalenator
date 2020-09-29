@@ -164,9 +164,6 @@ function createDdlInstrument() {
 function getclickedElement(element) {
     element.on('mousedown', function () {
 
-        //let alert = document.getElementById("alert");
-        //alert.innerText = element.name;
-
         element.set('fill', `rgb(255, 118, 117)`);
 
         let note = element.note;
@@ -176,7 +173,6 @@ function getclickedElement(element) {
 };
 
 function resizeCanvas() {
-    // Haven't resized in 100ms!
 
     canvasFabric.clear();
 
@@ -196,8 +192,6 @@ function resizeCanvas() {
 
     availableWidth = navbar.offsetWidth;
     availableHeight = body.clientHeight - navbar.offsetHeight;
-
-    // dpi = window.devicePixelRatio;   
 
     canvasFabric.setWidth(availableWidth);
     canvasFabric.setHeight(availableHeight);
@@ -231,8 +225,8 @@ function startElements() {
 }
 
 function setFretboard() {
-    let freetColumns;
-    let freetRows;
+    let fretColumns;
+    let fretRows;
     let ddlInstrument = document.getElementById('ddlInstrument').value;
     let ddlTuning = document.getElementById('ddlTuning').value;
     let stateFuelle = document.getElementById('fuelle').getAttribute('state');
@@ -240,17 +234,6 @@ function setFretboard() {
 
     switch (ddlInstrument) {
         case 'Guitarra':
-            /*notes = [
-                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
-                ["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
-                ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G"],
-                ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
-                ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
-                ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-            freetColumns = 25;
-            freetRows = 6;*/
-
-            //Prueba
             notes = [
                 [["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"], ["A#", "4"], ["B", "4"], ["C", "5"], ["C#", "5"], ["D", "5"], ["D#", "5"], ["E", "5"], ["F", "5"], ["F#", "5"], ["G", "5"], ["G#", "5"], ["A", "5"], ["A#", "5"], ["B", "5"], ["C", "6"], ["C#", "6"], ["D", "6"], ["D#", "6"], ["E", "6"]],
                 [["B", "3"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"], ["A#", "4"], ["B", "4"], ["C", "5"], ["C#", "5"], ["D", "5"], ["D#", "5"], ["E", "5"], ["F", "5"], ["F#", "5"], ["G", "5"], ["G#", "5"], ["A", "5"], ["A#", "5"], ["B", "5"]],
@@ -259,8 +242,6 @@ function setFretboard() {
                 [["A", "2"], ["A#", "2"], ["B", "2"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"]],
                 [["E", "2"], ["F", "2"], ["F#", "2"], ["G", "2"], ["G#", "2"], ["A", "2"], ["A#", "2"], ["B", "2"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"]]
             ];
-            freetColumns = 25;
-            freetRows = 6;
             break;
         case 'Bajo':
             notes = [
@@ -268,8 +249,6 @@ function setFretboard() {
                 ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
                 ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
                 ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
-            freetColumns = 25;
-            freetRows = 4;
             break;
         case 'Ukelele':
             notes = [
@@ -277,8 +256,6 @@ function setFretboard() {
                 [["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"], ["A#", "4"], ["B", "4"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"]],
                 [["C", "2"], ["C#", "2"], ["D", "2"], ["D#", "2"], ["E", "2"], ["F", "2"], ["F#", "2"], ["G", "2"], ["G#", "2"], ["A", "2"], ["A#", "2"], ["B", "2"], ["C", "2"]],
                 [["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"]]];
-            freetColumns = 13;
-            freetRows = 4;
             break;
         case "Bajo quinto":
             notes = [
@@ -287,8 +264,6 @@ function setFretboard() {
                 ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
                 ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
                 ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#"]];
-            freetColumns = 22;
-            freetRows = 5;
             break;
         case "Acordeón":
             switch (ddlTuning) {
@@ -337,8 +312,6 @@ function setFretboard() {
                 default:
                     break;
             }
-            freetColumns = 11;
-            freetRows = 3;
 
             //Mostrar fuelle
             let divFuelle = document.getElementById("divFuelle");
@@ -353,10 +326,12 @@ function setFretboard() {
                 [["A", "2"], ["A#", "2"], ["B", "2"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"], ["F", "4"], ["F#", "4"], ["G", "4"], ["G#", "4"], ["A", "4"]],
                 [["E", "2"], ["F", "2"], ["F#", "2"], ["G", "2"], ["G#", "2"], ["A", "2"], ["A#", "2"], ["B", "2"], ["C", "3"], ["C#", "3"], ["D", "3"], ["D#", "3"], ["E", "3"], ["F", "3"], ["F#", "3"], ["G", "3"], ["G#", "3"], ["A", "3"], ["A#", "3"], ["B", "3"], ["C", "4"], ["C#", "4"], ["D", "4"], ["D#", "4"], ["E", "4"]]
             ];
-            freetColumns = 25;
-            freetRows = 6;
             break;
     }
+
+    //Obtener filas y columnas
+    fretRows = notes.length;
+    fretColumns = notes[0].length;
 
     // Freet parametros para dibujar canvas
     let freetLabel = availableHeight / 14;
@@ -367,44 +342,40 @@ function setFretboard() {
     let freetTop = freetLabel - freetStroke;
 
     // Parametros de dimension
-    let freetWidth = (innerWidth - freetStroke) / freetColumns;
-    let freetHeight = ((availableHeight - freetLabel) - (availableHeight / 3)) / freetRows;
+    let freetWidth = (innerWidth - freetStroke) / fretColumns;
+    let freetHeight = ((availableHeight - freetLabel) - (availableHeight / 3)) / fretRows;
 
     if (device == 'mobile') {
         freetWidth = innerWidth / 8;
         freetHeight = 40;
 
-        canvasFabric.setWidth((innerWidth / 8) * freetColumns + freetStroke);
-        canvasFabric.setHeight(freetHeight * freetRows + freetLabel)
+        canvasFabric.setWidth((innerWidth / 8) * fretColumns + freetStroke);
+        canvasFabric.setHeight(freetHeight * fretRows + freetLabel)
 
-        //
         const canvasMargin = 16;
         document.getElementsByClassName('canvas-container')[0].style.width = availableWidth - canvasMargin * 2 + "px";
 
-        console.log((innerWidth / 8) * freetRows)
+        //console.log((innerWidth / 8) * fretRows)
     }
 
     // Setting for desktop
     // Set size of canvas to fit content
     let canvasFitWidth = innerWidth
-    let canvasFitHeight = freetHeight * freetRows + freetLabel
+    let canvasFitHeight = freetHeight * fretRows + freetLabel
 
     if (device == 'desktop') {
         canvasFabric.setWidth(canvasFitWidth);
         canvasFabric.setHeight(canvasFitHeight)
     }
 
-
-    for (i = 0; i < freetColumns; i++) {
+    for (i = 0; i < fretColumns; i++) {
         let circle = new fabric.Circle({
             left: freetLeft,
             top: 0,
             radius: 12,
-            // fill: '#393939',
             fill: '#ff6e611c',
             width: freetWidth,
             height: freetLabel,
-            // centeredScaling: true,
             evented: false,
             selectable: false,
             backgroundColor: '#fff',
@@ -420,9 +391,7 @@ function setFretboard() {
             fontWeight: 'bold',
             textAlign: 'center',
             fontFamily: "sans-serif",
-            // fill: '#fff',
             fill: '#FF6E61',
-            // centeredScaling: true,
             evented: false,
             selectable: false,
             width: freetWidth,
@@ -432,7 +401,7 @@ function setFretboard() {
 
         canvasFabric.add(freetNumber);
 
-        for (j = 0; j < freetRows; j++) {
+        for (j = 0; j < fretRows; j++) {
             let rect = new fabric.Rect({
                 left: freetLeft,
                 top: freetTop,
@@ -440,13 +409,12 @@ function setFretboard() {
                 height: freetHeight,
                 stroke: 'rgb(255, 110, 97, .39)',
                 strokeWidth: freetStroke,
-
                 selectable: false,
                 fill: "rgb(255,255,255)",
                 name: `Rectangle_[${i}][${j}]`,
                 objectCaching: false,
 
-                // Nombre de nota
+                // Nombre de nota y su octava
                 note: notes[j][i][0],
                 octave: notes[j][i][1],
             });
@@ -496,7 +464,6 @@ function setFretboard() {
                 });
             }
 
-
             fretNotes.push(rectNote);
             canvasFabric.add(rectNote);
 
@@ -528,7 +495,6 @@ function onChangeDdlKey(ddl) {
     for (let i in fretboard) {
         let fret = fretboard[i];
         fret.set('fill', `rgb(255,255,255)`);
-
         fretNotes[i].set('fill', '#E06155');
         fretNotes[i].fontWeight = 'normal';
     }
@@ -552,7 +518,6 @@ function onChangeDdlKey(ddl) {
         for (let i in fretboard) {
             if (fretboard[i].note == ScaleNotes[note]) {
                 let fret = fretboard[i];
-                //console.log(fret)
                 fret.set('fill', '#ff6e6130');
 
                 // Change letter color
@@ -610,6 +575,10 @@ function onChangeDdlKey(ddl) {
 
         liElement.appendChild(buttonElement);
         chordContainer.appendChild(liElement);
+
+        //Mostrar contenedor de acordes
+        let divChordContainer = document.getElementsByClassName("divChord-container")[0];
+        divChordContainer.style.display = "block";
     }
 }
 
@@ -704,32 +673,33 @@ function onChangeRadChordType(rad) {
 
     if (radSelected == "Triada") {
         for (let i = 0; i < btnChords.length; i++) {
+            let degree = btnChords[i].getAttribute("notes").split(",")[0];
             switch (ddlScale) {
                 case "Mayor":
-                    btnChords[i].innerHTML = btnChords[i].getAttribute("notes")[0] + " " + majorTriadChords[i];
+                    btnChords[i].innerHTML = degree + " " + majorTriadChords[i];
                     switch (majorTriadChords[i]) {
                         case "Mayor":
-                            ChordNotes = findMayorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMayorScale(degree);
                             break;
                         case "Menor":
-                            ChordNotes = findMinorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMinorScale(degree);
                             break;
                         case "Semidisminuido":
-                            ChordNotes = findDiminishedScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findDiminishedScale(degree);
                             break;
                     }
                     break;
                 case "Menor":
-                    btnChords[i].innerHTML = btnChords[i].getAttribute("notes")[0] + " " + minorTriadChords[i];
+                    btnChords[i].innerHTML = degree + " " + minorTriadChords[i];
                     switch (minorTriadChords[i]) {
                         case "Mayor":
-                            ChordNotes = findMayorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMayorScale(degree);
                             break;
                         case "Menor":
-                            ChordNotes = findMinorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMinorScale(degree);
                             break;
                         case "Semidisminuido":
-                            ChordNotes = findDiminishedScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findDiminishedScale(degree);
                             break;
                     }
                     break;
@@ -739,38 +709,39 @@ function onChangeRadChordType(rad) {
     }
     else {
         for (let i = 0; i < btnChords.length; i++) {
+            let degree = btnChords[i].getAttribute("notes").split(",")[0];
             switch (ddlScale) {
                 case "Mayor":
-                    btnChords[i].innerHTML = btnChords[i].getAttribute("notes")[0] + " " + majorTetradChords[i];
+                    btnChords[i].innerHTML = degree + " " + majorTetradChords[i];
                     switch (majorTetradChords[i]) {
                         case "Mayor 7":
-                            ChordNotes = findMayorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMayorScale(degree);
                             break;
                         case "7":
-                            ChordNotes = findMayorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMayorScale(degree);
                             break;
                         case "Menor 7":
-                            ChordNotes = findMinorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMinorScale(degree);
                             break;
                         case "Disminuido":
-                            ChordNotes = findDiminishedScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findDiminishedScale(degree);
                             break;
                     }
                     break;
                 case "Menor":
-                    btnChords[i].innerHTML = btnChords[i].getAttribute("notes")[0] + " " + minorTetradChords[i];
+                    btnChords[i].innerHTML = degree + " " + minorTetradChords[i];
                     switch (minorTetradChords[i]) {
                         case "Mayor 7":
-                            ChordNotes = findMayorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMayorScale(degree);
                             break;
                         case "7":
-                            ChordNotes = findMayorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMayorScale(degree);
                             break;
                         case "Menor 7":
-                            ChordNotes = findMinorScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findMinorScale(degree);
                             break;
                         case "Disminuido":
-                            ChordNotes = findDiminishedScale(btnChords[i].getAttribute("notes")[0]);
+                            ChordNotes = findDiminishedScale(degree);
                             break;
                     }
                     break;
@@ -782,22 +753,11 @@ function onChangeRadChordType(rad) {
 
 function onClickChord(e) {
     let notes = e.getAttribute("Notes").split(",");
-    let ChordNotes = notes.map(function(i){
+    let ChordNotes = notes.map(function (i) {
         return i + "3";
     });
-    //console.log(ChordNotes);
+
+    //Reproducir el sonido
     sampler.triggerAttackRelease(ChordNotes, 1.5);
 }
 /*--------------------------------------------------------------------------------*/
-
-// let toggleFullscreen = document.getElementsByTagName('nav')[0];
-
-
-// Toggle fullscreen
-// toggleFullscreen.addEventListener('click', () => {
-//     if (device == 'mobile') {
-//         if (!document.fullscreenElement) {
-//             document.body.requestFullscreen();
-//         }
-//     }
-// });

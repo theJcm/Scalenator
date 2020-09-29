@@ -215,7 +215,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   box-sizing: border-box;
 }
 
-.freet-container {
+.divChord-container {
   justify-content: space-evenly;
   margin: 1em;
   border-radius: 2.1em;
@@ -413,7 +413,7 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
     margin: 0;
   }
 
-  .freet-container {
+  .divChord-container {
     margin: 2em auto auto auto;
   }
 
