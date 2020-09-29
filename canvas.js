@@ -41,7 +41,7 @@ let dpi = window.devicePixelRatio;
 let width = availableWidth
 let height = availableHeight;
 
-var canvasFabric = new fabric.Canvas('canvas', {
+let canvasFabric = new fabric.Canvas('canvas', {
     renderOnAddRemove: false,
     backgroundColor: 'rgb(255,255,255, 1)',
     hoverCursor: 'pointer',
@@ -169,6 +169,8 @@ function getclickedElement(element) {
         let note = element.note;
         let octave = element.octave;
         sampler.triggerAttackRelease(note + octave, 1.6);
+
+        console.log(element);
     });
 };
 
@@ -354,8 +356,6 @@ function setFretboard() {
 
         const canvasMargin = 16;
         document.getElementsByClassName('canvas-container')[0].style.width = availableWidth - canvasMargin * 2 + "px";
-
-        //console.log((innerWidth / 8) * fretRows)
     }
 
     // Setting for desktop
@@ -411,58 +411,39 @@ function setFretboard() {
                 strokeWidth: freetStroke,
                 selectable: false,
                 fill: "rgb(255,255,255)",
-                name: `Rectangle_[${i}][${j}]`,
                 objectCaching: false,
 
                 // Nombre de nota y su octava
                 note: notes[j][i][0],
                 octave: notes[j][i][1],
+                degree: 0,
             });
 
-            // Add object to array  
+            // Añadir traste al arreglo
             fretboard.push(rect);
 
             // Set event listener to current Object
             getclickedElement(rect);
 
-            color1 = Math.floor(Math.random() * (255 - 0) + 0);
-            color2 = Math.floor(Math.random() * (255 - 0) + 0);
-            color3 = Math.floor(Math.random() * (255 - 0) + 0);
-
             canvasFabric.add(rect);
 
             let rectNote = null;
-            if (device == "mobile") {
-                rectNote = new fabric.Textbox(rect.note, {
-                    left: freetLeft,
-                    top: freetTop + freetHeight * 0.5,
-                    fontSize: 10,
-                    textAlign: 'center',
-                    fontFamily: "Arial",
-                    evented: false,
-                    selectable: false,
-                    fill: '#E06155',
-                    width: freetWidth,
-                    height: freetHeight,
-                    originY: 'center',
-                    objectCaching: false,
-                });
-            } else {
-                rectNote = new fabric.Textbox(rect.note, {
-                    left: freetLeft,
-                    top: freetTop + freetHeight * 0.5,
-                    fontSize: 12,
-                    textAlign: 'center',
-                    fontFamily: "Arial",
-                    evented: false,
-                    selectable: false,
-                    fill: '#E06155',
-                    width: freetWidth,
-                    height: freetHeight,
-                    originY: 'center',
-                    objectCaching: false,
-                });
-            }
+            let fontSizeRecNote = device == "mobile" ? 10 : 12;
+
+            rectNote = new fabric.Textbox(rect.note, {
+                left: freetLeft,
+                top: freetTop + freetHeight * 0.5,
+                fontSize: fontSizeRecNote,
+                textAlign: 'center',
+                fontFamily: "Arial",
+                evented: false,
+                selectable: false,
+                fill: '#E06155',
+                width: freetWidth,
+                height: freetHeight,
+                originY: 'center',
+                objectCaching: false,
+            });
 
             fretNotes.push(rectNote);
             canvasFabric.add(rectNote);
@@ -516,17 +497,20 @@ function onChangeDdlKey(ddl) {
 
     for (let note in ScaleNotes) {
         for (let i in fretboard) {
-            if (fretboard[i].note == ScaleNotes[note]) {
-                let fret = fretboard[i];
+            let fret = fretboard[i];
+            if (fretboard[i].note == ScaleNotes[note]) {              
                 fret.set('fill', '#ff6e6130');
 
                 // Change letter color
                 fretNotes[i].set('fill', '#FF6E61');
                 fretNotes[i].fontWeight = 'bold';
+
+                //Grado de la escala
+                fret.degree = parseInt(note) + 1;
             }
         }
     }
-    canvasFabric.requestRenderAll()
+    canvasFabric.requestRenderAll();
 
     //Limpiar acordes
     let chordContainer = document.getElementById("chordContainer");
@@ -600,10 +584,6 @@ function onChangeDdlInstrument(ddl) {
         divDdlTuning.style.display = "none";
         divFuelle.style.display = "none";
     }
-    /*let ddlScale = document.getElementById('ddlScale');
-    ddlScale.options[0].selected = true;
-    let ddlKey = document.getElementById('ddlKey');
-    ddlKey.options[0].selected = true;*/
 }
 
 function onChangeDdlTuning(ddl) {
@@ -613,6 +593,34 @@ function onChangeDdlTuning(ddl) {
 
     //Limpiar todo
     clearAll();
+}
+
+function onChangeDdlLabel(ddl) {
+
+    let selectedLabel = ddl.value;
+
+    switch (selectedLabel) {
+        case 'Notas':
+            for (let i in fretboard) {
+                let fret = fretboard[i];
+
+                if (fret.degree != 0) {
+                    fretNotes[i].set("text", String(fret.note));
+                }
+            }
+            break;
+        case 'Grados':
+            for (let i in fretboard) {
+                let fret = fretboard[i];
+
+                if (fret.degree != 0) {
+                    fretNotes[i].set("text", String(fret.degree));
+                }
+            }
+            break;
+    }
+
+    canvasFabric.requestRenderAll();
 }
 
 function clearAll() {
