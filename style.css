@@ -369,6 +369,29 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
   padding: 0.4em 0;
 }
 
+.tags-container {
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+  background: #fff1f1;
+  margin-top: 0em;
+}
+
+.tags-title {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  display: block;
+  color: #ff6e61;
+}
+
+.tags-select {
+  border: none;
+  border-radius: 0.85em;
+  padding: 0.5em 1.7em;
+  color: #ffffff;
+  background: #ff8378
+}
+
 
 /* -------------- DESKTOP -------------------- */
 @media (min-width: 1025px) {
@@ -410,11 +433,11 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
 
   .canvas-container {
     overflow: hidden;
-    margin: 0;
+    margin: 0 1em;
   }
 
   .divChord-container {
-    margin: 2em auto auto auto;
+    margin: 2em;
   }
 
   .freet-options {
@@ -452,6 +475,10 @@ select#ddlInstrument:focus, select#ddlTuning:focus ,select#ddlScale:focus, selec
     padding-left: 0;
     flex-flow: wrap; 
     overflow: auto;
+  }
+
+  .tags-container {
+    margin-top: 2em;
   }
 }
 

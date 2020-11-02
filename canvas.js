@@ -197,9 +197,12 @@ function resizeCanvas() {
 
     canvasFabric.setWidth(availableWidth);
     canvasFabric.setHeight(availableHeight);
+    console.log(availableHeight + " canvasFabric")
 
     canvas.style.width = availableWidth;
     canvas.style.height = availableHeight;
+    console.log(availableHeight+ " canvas style")
+
 
     //Pintar todo de nuevo con las nuevas medidas
     setFretboard();
@@ -234,6 +237,16 @@ function setFretboard() {
     let stateFuelle = document.getElementById('fuelle').getAttribute('state');
     let notes;
 
+    function prepareNotes(notesArray, instrument) {
+        for (i=0; i < notesArray.length; i++) {
+            for (j = 0; j < notesArray[i].length; j++) {
+                notesArray[i][j] = [notesArray[i][j], ""]
+            }
+        }
+        console.log(`----${instrument}---- Formated notes array:`);
+        console.log(JSON.stringify(notesArray));
+    }
+
     switch (ddlInstrument) {
         case 'Guitarra':
             notes = [
@@ -251,6 +264,7 @@ function setFretboard() {
                 ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D"],
                 ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A"],
                 ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"]];
+            prepareNotes(notes, ddlInstrument);
             break;
         case 'Ukelele':
             notes = [
@@ -266,6 +280,7 @@ function setFretboard() {
                 ["G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
                 ["D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
                 ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#"]];
+            prepareNotes(notes, ddlInstrument);
             break;
         case "Acordeón":
             switch (ddlTuning) {
@@ -343,18 +358,22 @@ function setFretboard() {
     let freetLeft = 0;
     let freetTop = freetLabel - freetStroke;
 
-    // Parametros de dimension
-    let freetWidth = (innerWidth - freetStroke) / fretColumns;
-    let freetHeight = ((availableHeight - freetLabel) - (availableHeight / 3)) / fretRows;
+    // Parametros del canvas
+    const canvasMargin = 16;
 
+    // Parametros de dimension
+    let freetWidth = (innerWidth - freetStroke - canvasMargin * 2) / fretColumns;
+    let freetHeight = ((availableHeight - freetLabel) - (availableHeight / 3)) / fretRows;
+    document.getElementsByClassName('canvas-container')[0].style.width = availableWidth - canvasMargin * 2 + "px";
+
+    
     if (device == 'mobile') {
         freetWidth = innerWidth / 8;
         freetHeight = 40;
 
-        canvasFabric.setWidth((innerWidth / 8) * fretColumns + freetStroke);
-        canvasFabric.setHeight(freetHeight * fretRows + freetLabel)
+        canvasFabric.setWidth(parseInt((innerWidth / 8) * fretColumns + freetStroke));
+        canvasFabric.setHeight(parseInt(freetHeight * fretRows + freetLabel));
 
-        const canvasMargin = 16;
         document.getElementsByClassName('canvas-container')[0].style.width = availableWidth - canvasMargin * 2 + "px";
     }
 
@@ -364,8 +383,8 @@ function setFretboard() {
     let canvasFitHeight = freetHeight * fretRows + freetLabel
 
     if (device == 'desktop') {
-        canvasFabric.setWidth(canvasFitWidth);
-        canvasFabric.setHeight(canvasFitHeight)
+        canvasFabric.setWidth(parseInt(canvasFitWidth - canvasMargin*2));
+        canvasFabric.setHeight(parseInt(canvasFitHeight))
     }
 
     for (i = 0; i < fretColumns; i++) {
@@ -397,6 +416,7 @@ function setFretboard() {
             width: freetWidth,
             height: freetLabel,
             objectCaching: false,
+            caching: false
         });
 
         canvasFabric.add(freetNumber);
@@ -404,20 +424,24 @@ function setFretboard() {
         for (j = 0; j < fretRows; j++) {
             let rect = new fabric.Rect({
                 left: freetLeft,
-                top: freetTop,
+                top: freetTop + 1,
                 width: freetWidth,
-                height: freetHeight,
-                stroke: 'rgb(255, 110, 97, .39)',
-                strokeWidth: freetStroke,
+                height: freetHeight - 1,
+                // stroke: 'rgb(255, 110, 97, .39)',
+                // stroke: '#000',
+                strokeWidth: 0,
                 selectable: false,
-                fill: "rgb(255,255,255)",
+                fill: "#fff",
                 objectCaching: false,
+                paintFirst: 'fill',
+                // strokeUniform: true,
 
                 // Nombre de nota y su octava
                 note: notes[j][i][0],
                 octave: notes[j][i][1],
                 degree: 0,
             });
+            
 
             // Añadir traste al arreglo
             fretboard.push(rect);
@@ -462,12 +486,63 @@ function setFretboard() {
             strokeLineCap: 'round',
             strokeLineJoin: 'round'
         });
-
         canvasFabric.add(freetLine);
+
+
+        
 
         freetLeft += freetWidth;
         freetTop = freetLabel - freetStroke;
     }
+
+    for (i=0; i < fretRows + 1; i++) {
+        if (i == 6 ) {
+            let strokeLine = new fabric.Line([0, 0, canvas.width, 0], {
+                left: 0,
+                top: canvasFitHeight - freetStroke,
+                stroke: "#ffdbd8",
+                strokeWidth: 1,
+                selectable: false,
+                selection: false,
+                objectCaching: false,
+                paintFirst: true
+                // strokeLineCap: 'round',
+                // strokeLineJoin: 'round'
+            });
+            canvasFabric.add(strokeLine);
+            freetLabel = parseInt(freetLabel) + parseInt(freetHeight)
+            console.log(freetLabel)
+            canvasFabric.sendToBack(strokeLine)
+
+        } else {
+            let strokeLine = new fabric.Line([0, 0, canvas.width, 0], {
+                left: 0,
+                top: parseInt(freetLabel),
+                stroke: "#ffdbd8",
+                strokeWidth: 1,
+                selectable: false,
+                selection: false,
+                objectCaching: false,
+                paintFirst: true
+                // strokeLineCap: 'round',
+                // strokeLineJoin: 'round'
+            });
+            canvasFabric.add(strokeLine);
+            freetLabel = parseInt(freetLabel) + parseInt(freetHeight)
+            console.log(freetLabel)
+            // canvasFabric.sendToBack(strokeLine)
+
+        }
+
+        
+
+        
+
+        // Sends grid backwards
+        // canvasFabric.sendBackwards(strokeLine)
+
+    }   
+
 }
 
 function onChangeDdlKey(ddl) {
