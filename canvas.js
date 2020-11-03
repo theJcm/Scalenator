@@ -403,9 +403,11 @@ function setFretboard() {
 
         canvasFabric.add(circle);
 
+        let freetNumberSize = 12;
+
         let freetNumber = new fabric.Textbox(ddlInstrument != "Acordeón" ? String(i) : String(i + 1), {
             left: freetLeft,
-            top: freetLabel / 2.5 - 1,
+            top: freetLabel/2 - freetNumberSize/2,
             fontSize: 12,
             fontWeight: 'bold',
             textAlign: 'center',
@@ -416,7 +418,8 @@ function setFretboard() {
             width: freetWidth,
             height: freetLabel,
             objectCaching: false,
-            caching: false
+            caching: false,
+            originY: "top"
         });
 
         canvasFabric.add(freetNumber);
